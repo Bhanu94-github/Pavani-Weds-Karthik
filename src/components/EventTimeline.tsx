@@ -1,6 +1,7 @@
 import React from 'react';
 import { WeddingEvent } from '../types/wedding';
 import { EventCard } from './EventCard';
+import { LotusGarlandDivider } from './RoyalOrnaments';
 
 interface Props {
   events: WeddingEvent[];
@@ -36,9 +37,7 @@ export const EventTimeline: React.FC<Props> = ({ events }) => {
         ))}
       </div>
 
-      <div className="royal-divider" aria-hidden="true">
-        <span className="royal-divider-symbol">❖</span>
-      </div>
+      <LotusGarlandDivider className="schedule-bottom-garland" />
 
       <style>{`
         .timeline-luxury-section {

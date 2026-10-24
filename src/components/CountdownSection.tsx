@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, CalendarPlus, Download, Check } from 'lucide-react';
 import { calculateTimeRemaining, generateGoogleCalendarUrl, generateIcsBlob } from '../utils/dateTime';
 import { WeddingConfig } from '../types/wedding';
+import { LotusGarlandDivider } from './RoyalOrnaments';
 
 interface Props {
   config: WeddingConfig;
@@ -51,9 +52,9 @@ export const CountdownSection: React.FC<Props> = ({ config }) => {
   };
 
   return (
-    <section className="countdown-luxury-section" aria-labelledby="countdown-title">
+    <section className="countdown-royal-section" aria-labelledby="countdown-title">
       <div className="countdown-header-block">
-        <span className="eyebrow-tag">Auspicious Countdown</span>
+        <span className="eyebrow-tag">Sacred Timeline</span>
         <h2 id="countdown-title" className="section-heading-luxury">
           Moments Until the Sacred Muhūrtham
         </h2>
@@ -71,53 +72,61 @@ export const CountdownSection: React.FC<Props> = ({ config }) => {
           </p>
         </div>
       ) : (
-        <div className="countdown-dials-row" role="timer" aria-label="Time remaining until wedding">
-          <div className="countdown-dial">
-            <div className="dial-inner">
-              <span className="dial-value">{time.days}</span>
-              <span className="dial-label">Days</span>
+        <div className="royal-dials-showcase" role="timer" aria-label="Time remaining until wedding">
+          {/* Days Dial */}
+          <div className="royal-arch-dial">
+            <div className="arch-dial-inner">
+              <span className="arch-dial-number">{time.days}</span>
+              <span className="arch-dial-unit">Days</span>
             </div>
+            <div className="dial-base-accent"></div>
           </div>
 
-          <span className="dial-divider" aria-hidden="true">❖</span>
+          <span className="dial-flourish-separator" aria-hidden="true">✦</span>
 
-          <div className="countdown-dial">
-            <div className="dial-inner">
-              <span className="dial-value">{String(time.hours).padStart(2, '0')}</span>
-              <span className="dial-label">Hours</span>
+          {/* Hours Dial */}
+          <div className="royal-arch-dial">
+            <div className="arch-dial-inner">
+              <span className="arch-dial-number">{String(time.hours).padStart(2, '0')}</span>
+              <span className="arch-dial-unit">Hours</span>
             </div>
+            <div className="dial-base-accent"></div>
           </div>
 
-          <span className="dial-divider" aria-hidden="true">❖</span>
+          <span className="dial-flourish-separator" aria-hidden="true">✦</span>
 
-          <div className="countdown-dial">
-            <div className="dial-inner">
-              <span className="dial-value">{String(time.minutes).padStart(2, '0')}</span>
-              <span className="dial-label">Minutes</span>
+          {/* Minutes Dial */}
+          <div className="royal-arch-dial">
+            <div className="arch-dial-inner">
+              <span className="arch-dial-number">{String(time.minutes).padStart(2, '0')}</span>
+              <span className="arch-dial-unit">Minutes</span>
             </div>
+            <div className="dial-base-accent"></div>
           </div>
 
-          <span className="dial-divider" aria-hidden="true">❖</span>
+          <span className="dial-flourish-separator" aria-hidden="true">✦</span>
 
-          <div className="countdown-dial">
-            <div className="dial-inner">
-              <span className="dial-value">{String(time.seconds).padStart(2, '0')}</span>
-              <span className="dial-label">Seconds</span>
+          {/* Seconds Dial */}
+          <div className="royal-arch-dial seconds-dial">
+            <div className="arch-dial-inner">
+              <span className="arch-dial-number">{String(time.seconds).padStart(2, '0')}</span>
+              <span className="arch-dial-unit">Seconds</span>
             </div>
+            <div className="dial-base-accent"></div>
           </div>
         </div>
       )}
 
-      {/* Save the Date Action */}
+      {/* Save the Date Action Plaque */}
       <div className="calendar-action-container">
         <button
           type="button"
-          className="btn-royal-gold"
+          className="btn-royal-gold calendar-plaque-btn"
           onClick={() => setShowCalendarMenu(!showCalendarMenu)}
           aria-expanded={showCalendarMenu}
           aria-haspopup="true"
         >
-          <CalendarPlus size={18} />
+          <CalendarPlus size={19} />
           <span>Save the Date to Calendar</span>
         </button>
 
@@ -147,78 +156,92 @@ export const CountdownSection: React.FC<Props> = ({ config }) => {
         )}
       </div>
 
-      <div className="royal-divider" aria-hidden="true">
-        <span className="royal-divider-symbol">❖</span>
-      </div>
+      <LotusGarlandDivider className="countdown-bottom-garland" />
 
       <style>{`
-        .countdown-luxury-section {
+        .countdown-royal-section {
           text-align: center;
           margin: 3.5rem 0;
         }
         .countdown-timing-note {
           font-family: var(--font-sans);
-          font-weight: 600;
-          font-size: 0.95rem;
+          font-weight: 700;
+          font-size: 0.98rem;
           color: var(--gold-dark);
-          letter-spacing: 0.06em;
-          margin-top: 0.2rem;
+          letter-spacing: 0.08em;
+          margin-top: 0.3rem;
         }
-        .countdown-dials-row {
+        .royal-dials-showcase {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: clamp(0.5rem, 2.5vw, 1.4rem);
-          max-width: 650px;
+          gap: clamp(0.5rem, 2.5vw, 1.5rem);
+          max-width: 680px;
           margin: 2.2rem auto;
         }
-        .countdown-dial {
-          background: linear-gradient(145deg, #FFFFFF, var(--silk-cream));
-          border: 1.5px solid var(--gold-metallic);
-          border-radius: var(--radius-md);
+        .royal-arch-dial {
+          position: relative;
+          background: linear-gradient(180deg, #5C1225 0%, #3D0814 100%);
+          border: 2px solid var(--gold-metallic);
+          border-radius: 36px 36px 12px 12px;
           padding: 3px;
-          box-shadow: 0 10px 24px rgba(92, 18, 37, 0.08), 0 0 15px rgba(212, 175, 55, 0.15);
-          transition: transform 0.2s var(--ease-royal);
+          box-shadow:
+            0 12px 28px rgba(61, 8, 20, 0.25),
+            0 0 20px rgba(212, 175, 55, 0.25),
+            inset 0 2px 4px rgba(255, 255, 255, 0.2);
+          transition: transform 0.25s var(--ease-royal);
         }
-        .countdown-dial:hover {
+        .royal-arch-dial:hover {
           transform: translateY(-4px);
         }
-        .dial-inner {
-          border: 1px dashed rgba(212, 175, 55, 0.4);
-          border-radius: calc(var(--radius-md) - 3px);
-          padding: clamp(0.9rem, 2.5vw, 1.4rem) clamp(0.7rem, 2vw, 1.3rem);
-          min-width: clamp(65px, 17vw, 105px);
+        .arch-dial-inner {
+          border: 1px dashed rgba(212, 175, 55, 0.45);
+          border-radius: 32px 32px 8px 8px;
+          padding: clamp(1rem, 2.8vw, 1.6rem) clamp(0.8rem, 2vw, 1.4rem);
+          min-width: clamp(68px, 18vw, 112px);
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: center;
         }
-        .dial-value {
+        .arch-dial-number {
           font-family: var(--font-display);
-          font-size: clamp(2.2rem, 5.5vw, 3.4rem);
-          font-weight: 700;
-          color: var(--royal-wine);
+          font-size: clamp(2.3rem, 5.8vw, 3.6rem);
+          font-weight: 800;
+          color: #FFF4D4;
           line-height: 1;
           font-variant-numeric: tabular-nums;
-          text-shadow: 0 1px 2px rgba(92, 18, 37, 0.1);
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 12px rgba(212, 175, 55, 0.4);
         }
-        .dial-label {
+        .arch-dial-unit {
           font-family: var(--font-sans);
-          font-size: clamp(0.74rem, 1.4vw, 0.86rem);
+          font-size: clamp(0.72rem, 1.4vw, 0.84rem);
           text-transform: uppercase;
-          letter-spacing: 0.18em;
-          color: var(--gold-dark);
+          letter-spacing: 0.22em;
+          color: var(--gold-light);
           font-weight: 700;
-          margin-top: 0.4rem;
+          margin-top: 0.45rem;
+          opacity: 0.95;
         }
-        .dial-divider {
-          font-size: 0.9rem;
+        .dial-base-accent {
+          height: 3px;
+          background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+          border-radius: 0 0 8px 8px;
+        }
+        .dial-flourish-separator {
+          font-size: 1.1rem;
           color: var(--gold-metallic);
-          opacity: 0.8;
+          filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.5));
         }
         .calendar-action-container {
           position: relative;
           display: inline-block;
-          margin-top: 0.8rem;
+          margin-top: 1rem;
+        }
+        .calendar-plaque-btn {
+          padding: 0.95rem 2.2rem;
+          font-size: 1.02rem;
+          letter-spacing: 0.05em;
         }
         .calendar-flyout {
           position: absolute;
@@ -228,9 +251,9 @@ export const CountdownSection: React.FC<Props> = ({ config }) => {
           background: var(--silk-pure);
           border: 1.5px solid var(--gold-metallic);
           border-radius: var(--radius-md);
-          box-shadow: 0 16px 36px rgba(0, 0, 0, 0.15);
-          padding: 0.5rem;
-          min-width: 220px;
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+          padding: 0.55rem;
+          min-width: 230px;
           z-index: 50;
           display: flex;
           flex-direction: column;
@@ -239,15 +262,15 @@ export const CountdownSection: React.FC<Props> = ({ config }) => {
         .calendar-flyout-item {
           display: flex;
           align-items: center;
-          gap: 0.65rem;
-          padding: 0.65rem 1rem;
+          gap: 0.7rem;
+          padding: 0.7rem 1.1rem;
           border-radius: var(--radius-sm);
           color: var(--royal-wine-deep);
           text-decoration: none;
           background: transparent;
           border: none;
           font-family: var(--font-sans);
-          font-size: 0.92rem;
+          font-size: 0.94rem;
           font-weight: 600;
           cursor: pointer;
           width: 100%;
@@ -255,47 +278,53 @@ export const CountdownSection: React.FC<Props> = ({ config }) => {
           transition: background-color 0.15s ease;
         }
         .calendar-flyout-item:hover {
-          background: rgba(212, 175, 55, 0.12);
+          background: rgba(212, 175, 55, 0.14);
           color: var(--royal-wine);
+        }
+        .countdown-bottom-garland {
+          margin: 2.2rem auto 1rem;
         }
         .completed-ceremony-card {
           background: var(--silk-pure);
-          border: 1.5px solid var(--gold-metallic);
+          border: 2px solid var(--gold-metallic);
           border-radius: var(--radius-md);
-          padding: 2.2rem 1.8rem;
+          padding: 2.4rem 2rem;
           max-width: 520px;
           margin: 1.5rem auto;
           box-shadow: var(--shadow-royal);
         }
         .ceremony-icon {
-          font-size: 2.5rem;
+          font-size: 2.8rem;
           display: block;
           margin-bottom: 0.5rem;
         }
         .completed-title {
           font-family: var(--font-display);
-          font-size: 1.6rem;
+          font-size: 1.65rem;
           font-weight: 700;
           color: var(--royal-wine);
         }
         .completed-text {
           color: var(--ink-secondary);
           margin-top: 0.5rem;
-          font-size: 1rem;
+          font-size: 1.02rem;
         }
         .text-green {
           color: #2E7D32;
         }
-        @media (max-width: 500px) {
-          .countdown-dials-row {
+        @media (max-width: 550px) {
+          .royal-dials-showcase {
             gap: 0.35rem;
           }
-          .dial-divider {
+          .dial-flourish-separator {
             display: none;
           }
-          .dial-inner {
-            min-width: 60px;
-            padding: 0.7rem 0.35rem;
+          .arch-dial-inner {
+            min-width: 64px;
+            padding: 0.8rem 0.35rem;
+          }
+          .calendar-plaque-btn {
+            width: 100%;
           }
         }
       `}</style>

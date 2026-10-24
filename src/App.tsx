@@ -10,6 +10,7 @@ import { ClosingSection } from './components/ClosingSection';
 import { AudioPlayer } from './components/AudioPlayer';
 import { CeremonialEnvelopeModal } from './components/CeremonialEnvelopeModal';
 import { FallingFlowers } from './components/FallingFlowers';
+import { RoyalCornerBracket } from './components/RoyalOrnaments';
 
 export const App: React.FC = () => {
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(true);
@@ -28,29 +29,35 @@ export const App: React.FC = () => {
         Skip to wedding invitation content
       </a>
 
-      {/* Ceremonial Wax Seal Entrance */}
+      {/* Ceremonial 3D Royal Wax Seal Envelope Unboxing */}
       <CeremonialEnvelopeModal
         config={weddingConfig}
         isOpen={isEnvelopeOpen}
         onOpen={() => setIsEnvelopeOpen(false)}
       />
 
-      {/* Ultra-clean Luxury Royal Container without any blurry raster side images */}
+      {/* Ultra-luxury Royal Heritage Card Container */}
       <div className="invitation-container" id="main-invitation">
+        {/* Four Authentic 24K Gold Zari Filigree Corner Brackets */}
+        <RoyalCornerBracket position="top-left" size={72} />
+        <RoyalCornerBracket position="top-right" size={72} />
+        <RoyalCornerBracket position="bottom-left" size={72} />
+        <RoyalCornerBracket position="bottom-right" size={72} />
+
         <main className="invitation-content">
-          {/* 1. Opening Regal Invitation Hero */}
+          {/* 1. Opening Regal Invitation Hero with Royal Scalloped Arch */}
           <InvitationHero config={weddingConfig} />
 
-          {/* 2. Muhūrtham Countdown & Save to Calendar */}
+          {/* 2. Muhūrtham Countdown Dials & Save to Calendar */}
           <CountdownSection config={weddingConfig} />
 
-          {/* 3. Ceremonies & Auspicious Itinerary */}
+          {/* 3. WEDDING SCHEDULE (4 Uniform Luxury Event Cards) */}
           <EventTimeline events={weddingConfig.events} />
 
-          {/* 4. Wedding Venue & Google Maps Navigation */}
+          {/* 4. Grand Palace Venue & Google Maps Navigation */}
           <VenueSection config={weddingConfig} />
 
-          {/* 5. Smart RSVP & WhatsApp Confirmation */}
+          {/* 5. Royal RSVP Registry & Instant WhatsApp Confirmation */}
           {weddingConfig.rsvp.enabled && (
             <RSVPForm
               config={weddingConfig.rsvp}
@@ -63,11 +70,28 @@ export const App: React.FC = () => {
           <ShareInvitation config={weddingConfig.share} onToast={showToast} />
 
           {/* 7. Graceful Family Closing & Auspicious Blessings */}
-          <ClosingSection config={weddingConfig} />
+          <ClosingSection
+            config={weddingConfig}
+            onReopenEnvelope={() => setIsEnvelopeOpen(true)}
+          />
         </main>
       </div>
 
-      {/* Falling Romantic Flower Petals */}
+      {/* Reopen Royal Folio Floating Quick Trigger (shows once unboxed) */}
+      {!isEnvelopeOpen && (
+        <button
+          type="button"
+          className="reopen-folio-floating-btn"
+          onClick={() => setIsEnvelopeOpen(true)}
+          title="Reopen Ceremonial Wedding Folio"
+          aria-label="Reopen Ceremonial Wedding Folio"
+        >
+          <span aria-hidden="true">✉️</span>
+          <span>Royal Folio</span>
+        </button>
+      )}
+
+      {/* Falling Romantic Rose & Jasmine Petals */}
       <FallingFlowers />
 
       {/* Floating Traditional Shehnai / Music Player */}

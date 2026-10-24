@@ -3,6 +3,7 @@ import confetti from 'canvas-confetti';
 import { Heart, Send, CheckCircle2, MessageSquare, ChevronDown, ChevronUp, Users, Sparkles } from 'lucide-react';
 import { RsvpConfig } from '../types/wedding';
 import { saveRsvpLocally, calculateRsvpSummary, buildWhatsAppRsvpUrl, RsvpSummary } from '../utils/rsvpStorage';
+import { LotusGarlandDivider } from './RoyalOrnaments';
 
 interface Props {
   config: RsvpConfig;
@@ -218,69 +219,84 @@ export const RSVPForm: React.FC<Props> = ({ config, brideName, groomName }) => {
               </div>
             )}
 
-            <div className="input-field-group">
-              <label htmlFor="rsvp-message" className="field-label">
-                Wishes &amp; Blessings for Pavani &amp; Karthik <span className="optional-tag">(Optional)</span>
-              </label>
-              <textarea
-                id="rsvp-message"
-                className="luxury-textarea-input"
-                placeholder="Share your affectionate blessings..."
-                rows={3}
-                value={message}
-                onChange={e => setMessage(e.target.value)}
-                maxLength={300}
-              />
-            </div>
-
-            <div className="form-submit-row">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="btn-royal-wine submit-action-btn"
-              >
-                <Send size={18} />
-                <span>{isSubmitting ? 'Recording RSVP...' : 'Submit RSVP Response'}</span>
-                <Sparkles size={16} />
-              </button>
-            </div>
-          </form>
-        )}
-
-        {/* Real Device RSVP Summary */}
-        <div className="rsvp-drawer-container">
-          <button
-            type="button"
-            className="drawer-toggle-btn"
-            onClick={() => setShowSummary(!showSummary)}
-            aria-expanded={showSummary}
-          >
-            <span>Saved Responses on This Device ({summary.total})</span>
-            {showSummary ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-          </button>
-
-          {showSummary && (
-            <div className="summary-stat-row">
-              <div className="stat-box">
-                <span className="stat-count">{summary.coming}</span>
-                <span className="stat-caption">Attending Guests</span>
+              <div className="input-field-group">
+                <label htmlFor="rsvp-message" className="field-label">
+                  Wishes &amp; Blessings for Pavani &amp; Karthik <span className="optional-tag">(Optional)</span>
+                </label>
+                <textarea
+                  id="rsvp-message"
+                  className="luxury-textarea-input"
+                  placeholder="Share your affectionate blessings..."
+                  rows={3}
+                  value={message}
+                  onChange={e => setMessage(e.target.value)}
+                  maxLength={300}
+                />
+                <div className="quick-blessings-chips" aria-label="Suggested blessings">
+                  {[
+                    'Wishing you endless love & happiness! 🌸',
+                    'Heartiest congratulations Pavani & Karthik! ✨',
+                    'May your sacred union be showered with divine joy! 🙏',
+                    'So excited to celebrate with both families! 🎊'
+                  ].map(prompt => (
+                    <button
+                      key={prompt}
+                      type="button"
+                      className="blessing-chip-btn"
+                      onClick={() => setMessage(prompt)}
+                    >
+                      {prompt}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="stat-box">
-                <span className="stat-count">{summary.notComing}</span>
-                <span className="stat-caption">Regrets</span>
+
+              <div className="form-submit-row">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn-royal-wine submit-action-btn"
+                >
+                  <Send size={18} />
+                  <span>{isSubmitting ? 'Recording RSVP...' : 'Submit RSVP Response'}</span>
+                  <Sparkles size={16} />
+                </button>
               </div>
-              <div className="stat-box">
-                <span className="stat-count">{summary.total}</span>
-                <span className="stat-caption">Total Responses</span>
-              </div>
-            </div>
+            </form>
           )}
-        </div>
-      </div>
 
-      <div className="royal-divider" aria-hidden="true">
-        <span className="royal-divider-symbol">❖</span>
-      </div>
+          {/* Real Device RSVP Summary */}
+          <div className="rsvp-drawer-container">
+            <button
+              type="button"
+              className="drawer-toggle-btn"
+              onClick={() => setShowSummary(!showSummary)}
+              aria-expanded={showSummary}
+            >
+              <span>Saved Responses on This Device ({summary.total})</span>
+              {showSummary ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            </button>
+
+            {showSummary && (
+              <div className="summary-stat-row">
+                <div className="stat-box">
+                  <span className="stat-count">{summary.coming}</span>
+                  <span className="stat-caption">Attending Guests</span>
+                </div>
+                <div className="stat-box">
+                  <span className="stat-count">{summary.notComing}</span>
+                  <span className="stat-caption">Regrets</span>
+                </div>
+                <div className="stat-box">
+                  <span className="stat-count">{summary.total}</span>
+                  <span className="stat-caption">Total Responses</span>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <LotusGarlandDivider className="rsvp-bottom-garland" />
 
       <style>{`
         .rsvp-luxury-section {
@@ -399,6 +415,29 @@ export const RSVPForm: React.FC<Props> = ({ config, brideName, groomName }) => {
         }
         .option-icon {
           color: var(--royal-wine);
+        }
+        .quick-blessings-chips {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-top: 0.6rem;
+        }
+        .blessing-chip-btn {
+          background: rgba(212, 175, 55, 0.08);
+          border: 1px dashed var(--hairline-gold);
+          border-radius: var(--radius-full);
+          padding: 0.35rem 0.8rem;
+          font-family: var(--font-sans);
+          font-size: 0.78rem;
+          color: var(--royal-wine);
+          cursor: pointer;
+          transition: all 0.2s ease;
+          text-align: left;
+        }
+        .blessing-chip-btn:hover {
+          background: rgba(212, 175, 55, 0.2);
+          border-color: var(--gold-metallic);
+          transform: translateY(-1px);
         }
         .form-submit-row {
           margin-top: 1.8rem;

@@ -46,13 +46,14 @@
   --font-display: 'Cinzel', 'Cinzel Decorative', 'Cormorant Garamond', Georgia, serif;
   --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
   --font-script: 'Great Vibes', cursive;
+  --font-telugu: 'Noto Serif Telugu', 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Shadows & Illuminations */
   --shadow-subtle: 0 4px 20px rgba(92, 18, 37, 0.05);
-  --shadow-royal: 0 16px 40px rgba(92, 18, 37, 0.08), 0 2px 6px rgba(212, 175, 55, 0.15);
-  --shadow-elevated: 0 24px 60px rgba(61, 8, 20, 0.14), 0 0 30px rgba(212, 175, 55, 0.2);
-  --shadow-glow: 0 0 25px rgba(212, 175, 55, 0.35);
+  --shadow-royal: 0 16px 40px rgba(92, 18, 37, 0.09), 0 2px 8px rgba(212, 175, 55, 0.2);
+  --shadow-elevated: 0 26px 70px rgba(61, 8, 20, 0.16), 0 0 35px rgba(212, 175, 55, 0.25);
+  --shadow-glow: 0 0 28px rgba(212, 175, 55, 0.4);
 
   /* Radius */
   --radius-sm: 6px;
@@ -71,7 +72,7 @@
 }
 
 html {
-  background-color: var(--silk-cream);
+  background-color: #F8F3EB;
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
@@ -84,12 +85,13 @@ body {
   line-height: 1.65;
   min-height: 100vh;
   overflow-x: hidden;
-  /* Ultra-crisp royal background: rich cream with subtle warm gold aura, no blurry images! */
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
-    radial-gradient(circle at 10% 20%, rgba(145, 39, 67, 0.04) 0%, transparent 40%),
-    radial-gradient(circle at 90% 70%, rgba(212, 175, 55, 0.08) 0%, transparent 45%),
-    var(--silk-cream);
+  /* Ultra-luxurious bespoke royal Indian tapestry aura */
+  background-color: #F7F1E6;
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.18) 0%, transparent 60%),
+    radial-gradient(circle at 10% 25%, rgba(145, 39, 67, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 90% 75%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23B38F2D' fill-opacity='0.035'%3E%3Cpath d='M40 0 C42 12, 50 20, 62 22 C50 24, 42 32, 40 44 C38 32, 30 24, 18 22 C30 20, 38 12, 40 0 Z M0 40 C2 52, 10 60, 22 62 C10 64, 2 72, 0 84 C-2 72, -10 64, -22 62 C-10 60, -2 52, 0 40 Z M80 40 C82 52, 90 60, 102 62 C90 64, 82 72, 80 84 C78 72, 70 64, 58 62 C70 60, 78 52, 80 40 Z'/%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%23B38F2D' fill-opacity='0.05'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* Accessibility Skip Link */
@@ -125,11 +127,14 @@ body {
 .invitation-container {
   position: relative;
   max-width: 960px;
-  margin: 0 auto;
+  margin: clamp(1rem, 3vw, 2.5rem) auto;
   min-height: 100vh;
   background: var(--silk-ivory);
-  box-shadow: var(--shadow-elevated);
+  box-shadow: 
+    0 24px 70px rgba(61, 8, 20, 0.18),
+    0 0 45px rgba(212, 175, 55, 0.22);
   isolation: isolate;
+  border-radius: var(--radius-md);
 }
 
 /* Intricate Gold Foil Filigree Outer Borders (Crisp CSS + Vector SVG) */
@@ -137,21 +142,35 @@ body {
   content: '';
   position: absolute;
   inset: 12px;
-  border: 1.5px solid var(--hairline-gold);
+  border: 1.8px solid var(--hairline-gold);
   border-radius: var(--radius-sm);
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
 
 .invitation-container::after {
   content: '';
   position: absolute;
   inset: 18px;
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  border: 1px dashed rgba(212, 175, 55, 0.35);
   border-radius: var(--radius-sm);
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
+
+/* Four Corner 24K Gold Filigree Brackets Anchored Permanently */
+.royal-corner-bracket {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+  filter: drop-shadow(0 2px 6px rgba(212, 175, 55, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.royal-corner-bracket.top-left { top: 12px; left: 12px; }
+.royal-corner-bracket.top-right { top: 12px; right: 12px; }
+.royal-corner-bracket.bottom-left { bottom: 12px; left: 12px; }
+.royal-corner-bracket.bottom-right { bottom: 12px; right: 12px; }
 
 .invitation-content {
   position: relative;
@@ -162,6 +181,29 @@ body {
 /* ==========================================================================
    ROYAL VECTOR ORNAMENTS & SHLOKA DIVIDERS
    ========================================================================== */
+
+.lotus-garland-divider-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  width: min(100%, 520px);
+  margin: 2.4rem auto;
+  position: relative;
+}
+
+.garland-line {
+  flex: 1;
+  height: 1.5px;
+}
+
+.garland-line.left {
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.85));
+}
+
+.garland-line.right {
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.85), transparent);
+}
 
 .royal-divider {
   display: flex;
@@ -360,6 +402,39 @@ body {
 @keyframes pulseGoldGlow {
   0%, 100% { transform: scale(1); opacity: 0.7; }
   50% { transform: scale(1.4); opacity: 1; filter: drop-shadow(0 0 6px var(--gold-bright)); }
+}
+
+/* ==========================================================================
+   FLOATING REOPEN FOLIO BUTTON
+   ========================================================================== */
+
+.reopen-folio-floating-btn {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.05rem;
+  background: rgba(61, 8, 20, 0.9);
+  color: var(--gold-light);
+  border: 1px solid var(--gold-metallic);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(8px);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(212, 175, 55, 0.2);
+  transition: all 0.2s var(--ease-royal);
+}
+
+.reopen-folio-floating-btn:hover {
+  background: var(--royal-wine);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
 }
 
 /* ==========================================================================

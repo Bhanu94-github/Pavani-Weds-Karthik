@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin, Navigation, Car, Sparkles, Building2, Copy, Check } from 'lucide-react';
 import { WeddingConfig } from '../types/wedding';
+import { LotusGarlandDivider } from './RoyalOrnaments';
 
 interface Props {
   config: WeddingConfig;
@@ -21,7 +22,7 @@ export const VenueSection: React.FC<Props> = ({ config }) => {
   return (
     <section className="venue-grand-section" aria-labelledby="venue-heading">
       <div className="venue-header-block">
-        <span className="eyebrow-tag">Sacred Pavilion</span>
+        <span className="eyebrow-tag">Sacred Destination</span>
         <h2 id="venue-heading" className="section-heading-luxury">
           The Wedding Venue
         </h2>
@@ -31,12 +32,15 @@ export const VenueSection: React.FC<Props> = ({ config }) => {
       </div>
 
       <div className="venue-pavilion-card">
+        {/* Scalloped Pavilion Arch Accent */}
+        <div className="pavilion-top-trim" aria-hidden="true"></div>
+
         <div className="pavilion-header">
           <div className="pavilion-emblem" aria-hidden="true">
-            <Building2 size={28} />
+            <Building2 size={32} />
           </div>
-          <div>
-            <span className="venue-kicker">Sumuhūrtham &amp; Reception Venue</span>
+          <div className="pavilion-title-group">
+            <span className="venue-kicker">SUMUHŪRTHAM &amp; RECEPTION VENUE</span>
             <h3 className="venue-name-luxury">{mainWedding.venueName}</h3>
             <p className="venue-address-luxury">{mainWedding.venueAddress}</p>
           </div>
@@ -79,9 +83,7 @@ export const VenueSection: React.FC<Props> = ({ config }) => {
         </div>
       </div>
 
-      <div className="royal-divider" aria-hidden="true">
-        <span className="royal-divider-symbol">❖</span>
-      </div>
+      <LotusGarlandDivider className="venue-bottom-garland" />
 
       <style>{`
         .venue-grand-section {
@@ -90,75 +92,89 @@ export const VenueSection: React.FC<Props> = ({ config }) => {
         }
         .venue-pavilion-card {
           background: rgba(255, 255, 255, 0.98);
-          border: 1.5px solid var(--gold-metallic);
+          border: 2px solid var(--gold-metallic);
           border-radius: var(--radius-lg);
-          padding: clamp(2rem, 5vw, 2.8rem);
-          max-width: 820px;
+          padding: clamp(2.2rem, 5vw, 3rem);
+          max-width: 840px;
           margin: 0 auto;
           box-shadow: var(--shadow-royal);
           position: relative;
+          overflow: hidden;
+        }
+        .pavilion-top-trim {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(90deg, #5C1225, #D4AF37, #5C1225);
         }
         .pavilion-header {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 1.4rem;
-          margin-bottom: 1.8rem;
+          gap: 1.5rem;
+          margin-bottom: 2rem;
           text-align: left;
         }
         .pavilion-emblem {
-          background: var(--royal-wine);
+          background: linear-gradient(135deg, #7A1A32, #4D0C1D);
           color: var(--gold-bright);
           border: 2px solid var(--gold-metallic);
           border-radius: 50%;
-          width: 64px;
-          height: 64px;
+          width: 70px;
+          height: 70px;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          box-shadow: 0 6px 20px rgba(92, 18, 37, 0.25);
+          box-shadow: 0 8px 24px rgba(92, 18, 37, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.25);
+        }
+        .pavilion-title-group {
+          display: flex;
+          flex-direction: column;
+          min-width: 0;
         }
         .venue-kicker {
           font-family: var(--font-sans);
-          font-size: 0.76rem;
+          font-size: 0.78rem;
           text-transform: uppercase;
-          letter-spacing: 0.18em;
+          letter-spacing: 0.22em;
           color: var(--gold-dark);
-          font-weight: 700;
+          font-weight: 800;
           display: block;
         }
         .venue-name-luxury {
           font-family: var(--font-display);
-          font-size: clamp(1.9rem, 4vw, 2.6rem);
-          font-weight: 700;
+          font-size: clamp(2rem, 4.2vw, 2.75rem);
+          font-weight: 800;
           color: var(--royal-wine);
           line-height: 1.15;
           margin-top: 0.2rem;
         }
         .venue-address-luxury {
-          font-size: 0.96rem;
+          font-size: 1rem;
           color: var(--ink-secondary);
           margin-top: 0.3rem;
-          line-height: 1.45;
+          line-height: 1.5;
         }
         .amenities-badge-row {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
           justify-content: center;
-          gap: 0.85rem;
-          margin-bottom: 2rem;
+          gap: 0.9rem;
+          margin-bottom: 2.2rem;
         }
         .amenity-badge {
           display: inline-flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.55rem;
           background: rgba(212, 175, 55, 0.1);
           border: 1px solid var(--hairline-gold);
           border-radius: var(--radius-full);
-          padding: 0.45rem 1rem;
-          font-size: 0.88rem;
+          padding: 0.5rem 1.1rem;
+          font-size: 0.9rem;
           font-weight: 600;
           color: var(--ink-primary);
         }
@@ -169,16 +185,20 @@ export const VenueSection: React.FC<Props> = ({ config }) => {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 1rem;
+          gap: 1.2rem;
           flex-wrap: wrap;
         }
         .venue-maps-btn, .copy-address-btn {
-          font-size: 0.98rem;
+          font-size: 1rem;
+          padding: 0.9rem 2rem;
+        }
+        .venue-bottom-garland {
+          margin: 2.5rem auto 1rem;
         }
         .text-green {
           color: #2E7D32;
         }
-        @media (max-width: 650px) {
+        @media (max-width: 680px) {
           .pavilion-header {
             flex-direction: column;
             text-align: center;

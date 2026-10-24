@@ -1,12 +1,14 @@
 import React from 'react';
-import { Heart, ArrowUp } from 'lucide-react';
+import { Heart, ArrowUp, MailOpen } from 'lucide-react';
 import { WeddingConfig } from '../types/wedding';
+import { LotusGarlandDivider } from './RoyalOrnaments';
 
 interface Props {
   config: WeddingConfig;
+  onReopenEnvelope?: () => void;
 }
 
-export const ClosingSection: React.FC<Props> = ({ config }) => {
+export const ClosingSection: React.FC<Props> = ({ config, onReopenEnvelope }) => {
   const { closing, couple } = config;
 
   const scrollToTop = () => {
@@ -15,12 +17,15 @@ export const ClosingSection: React.FC<Props> = ({ config }) => {
 
   return (
     <footer className="closing-grand-section" aria-labelledby="closing-title">
-      <div className="royal-divider" aria-hidden="true">
-        <span className="royal-divider-symbol">❖</span>
-      </div>
+      <LotusGarlandDivider className="closing-top-garland" />
 
       <div className="closing-parchment-box">
-        <span className="eyebrow-tag">Divine Blessings</span>
+        {/* Sacred Mangalam Shloka */}
+        <div className="closing-shloka-banner" aria-label="Auspicious Blessing Shloka">
+          <span className="closing-telugu-shloka">॥ మంగళం దివ్య మంగళం • కల్యాణమస్తు ॥</span>
+        </div>
+
+        <span className="eyebrow-tag">Divine Blessings &amp; Gratitude</span>
         <h2 id="closing-title" className="section-heading-luxury">{closing.title}</h2>
         <p className="closing-message-narrative">{closing.message}</p>
 
@@ -30,22 +35,41 @@ export const ClosingSection: React.FC<Props> = ({ config }) => {
             <span className="signature-amp">&amp;</span>
             <span>{couple.groom.displayName}</span>
           </p>
-          <p className="signature-families-label">{closing.gratitudeNote}</p>
+          <p className="signature-families-label">
+            Smt. Gaddaguti Pushpa &amp; Sri Gaddaguti Veeraswamy
+          </p>
+          <span className="signature-sub-label">
+            &amp; The Gaddaguti &amp; Palivela Families
+          </span>
         </div>
 
-        <button
-          type="button"
-          className="scroll-top-pill"
-          onClick={scrollToTop}
-          aria-label="Back to top of wedding invitation"
-        >
-          <ArrowUp size={15} />
-          <span>Back to Top</span>
-        </button>
+        <div className="closing-action-buttons">
+          {onReopenEnvelope && (
+            <button
+              type="button"
+              className="reopen-folio-pill"
+              onClick={onReopenEnvelope}
+              aria-label="Reopen wedding invitation envelope folio"
+            >
+              <MailOpen size={16} />
+              <span>View Royal Folio</span>
+            </button>
+          )}
+
+          <button
+            type="button"
+            className="scroll-top-pill"
+            onClick={scrollToTop}
+            aria-label="Back to top of wedding invitation"
+          >
+            <ArrowUp size={15} />
+            <span>Back to Top</span>
+          </button>
+        </div>
 
         <div className="royal-copyright-tag">
           <p>
-            With divine blessings and affection <Heart size={13} className="heart-inline-icon" /> Palivela Family
+            With divine blessings and affection <Heart size={13} className="heart-inline-icon" /> Palivela &amp; Gaddaguti Family
           </p>
           <small className="wedding-date-stamp">20 November 2026 • Sravya Gardens, Nizamabad</small>
         </div>
@@ -66,6 +90,17 @@ export const ClosingSection: React.FC<Props> = ({ config }) => {
           color: var(--ink-primary);
           margin-bottom: 2rem;
         }
+        .closing-shloka-banner {
+          margin-bottom: 1.4rem;
+        }
+        .closing-telugu-shloka {
+          font-family: var(--font-telugu);
+          font-size: clamp(1.15rem, 2.4vw, 1.35rem);
+          font-weight: 700;
+          color: var(--gold-dark);
+          letter-spacing: 0.06em;
+          text-shadow: 0 1px 2px rgba(212, 175, 55, 0.35);
+        }
         .royal-signature-area {
           margin: 2.2rem 0;
         }
@@ -85,34 +120,51 @@ export const ClosingSection: React.FC<Props> = ({ config }) => {
         }
         .signature-families-label {
           font-family: var(--font-sans);
-          font-size: 0.95rem;
+          font-size: 0.96rem;
           font-weight: 700;
-          color: var(--gold-dark);
+          color: var(--royal-wine-deep);
           margin-top: 0.5rem;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
+          letter-spacing: 0.04em;
         }
-        .scroll-top-pill {
+        .signature-sub-label {
+          font-family: var(--font-sans);
+          font-size: 0.88rem;
+          font-weight: 600;
+          color: var(--gold-dark);
+          display: block;
+          margin-top: 0.2rem;
+          letter-spacing: 0.05em;
+        }
+        .closing-action-buttons {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          flex-wrap: wrap;
+          margin-top: 2rem;
+        }
+        .reopen-folio-pill, .scroll-top-pill {
           display: inline-flex;
           align-items: center;
-          gap: 0.45rem;
+          gap: 0.5rem;
           background: var(--silk-cream);
-          border: 1px solid var(--hairline-gold);
+          border: 1.5px solid var(--hairline-gold);
           border-radius: var(--radius-full);
-          padding: 0.5rem 1.2rem;
+          padding: 0.6rem 1.4rem;
           font-family: var(--font-sans);
-          font-size: 0.86rem;
+          font-size: 0.88rem;
           font-weight: 600;
-          color: var(--ink-secondary);
-          cursor: pointer;
-          transition: all 0.2s ease;
-          margin-top: 1.8rem;
-        }
-        .scroll-top-pill:hover {
-          border-color: var(--gold-metallic);
           color: var(--royal-wine);
+          cursor: pointer;
+          transition: all 0.2s var(--ease-royal);
+          box-shadow: 0 2px 8px rgba(92, 18, 37, 0.04);
+        }
+        .reopen-folio-pill:hover, .scroll-top-pill:hover {
+          border-color: var(--gold-metallic);
           background: var(--silk-pure);
-          box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+          color: var(--royal-wine-rich);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 18px rgba(212, 175, 55, 0.25);
         }
         .royal-copyright-tag {
           margin-top: 2.8rem;

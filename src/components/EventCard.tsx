@@ -29,6 +29,7 @@ export const EventCard: React.FC<Props> = ({ event }) => {
   };
 
   const isSharedEvening = event.id.includes('haldi') || event.id.includes('mehendi');
+  const isMarriage = event.id.includes('marriage');
 
   return (
     <article className={`uniform-event-card ${getThemeClass()}`}>
@@ -38,7 +39,13 @@ export const EventCard: React.FC<Props> = ({ event }) => {
       {/* Header Block with Uniform Heights */}
       <div className="card-header-uniform">
         <div className="card-kicker-row">
-          <span className="ritual-sequence-pill">Ceremony #{event.displayOrder}</span>
+          <span className="ritual-sequence-pill">Ceremony 0{event.displayOrder}</span>
+          {isMarriage && (
+            <span className="marriage-highlight-pill">
+              <Sparkles size={12} />
+              <span>Grand Sumuhūrtham</span>
+            </span>
+          )}
           {isSharedEvening && (
             <span className="shared-time-pill">
               <Sparkles size={12} />
@@ -188,6 +195,20 @@ export const EventCard: React.FC<Props> = ({ event }) => {
           padding: 0.2rem 0.6rem;
           border-radius: var(--radius-full);
         }
+        .marriage-highlight-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-family: var(--font-sans);
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: #FFF2CC;
+          background: linear-gradient(135deg, #7A1A32, #4D0C1D);
+          padding: 0.22rem 0.65rem;
+          border-radius: var(--radius-full);
+          border: 1px solid var(--gold-metallic);
+          box-shadow: 0 2px 8px rgba(92, 18, 37, 0.25);
+        }
         .shared-time-pill {
           display: inline-flex;
           align-items: center;
@@ -235,11 +256,13 @@ export const EventCard: React.FC<Props> = ({ event }) => {
           margin: 0;
         }
         .event-telugu-uniform {
-          font-size: 0.85rem;
+          font-family: var(--font-telugu);
+          font-size: 0.92rem;
           color: var(--gold-dark);
           font-weight: 600;
           display: block;
-          margin-top: 0.2rem;
+          margin-top: 0.15rem;
+          letter-spacing: 0.02em;
         }
         .card-specs-body {
           flex: 1;

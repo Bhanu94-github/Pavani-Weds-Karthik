@@ -41,21 +41,45 @@ it('weddingConfig contains correct bride and groom details and Gaddaguti parents
   assert.strictEqual(weddingConfig.mainWedding.venueName, 'Sravya Gardens');
 });
 
-it('weddingConfig contains 3 events (Haldi, Gajula Function & Pathanam, Marriage) in sequence', () => {
-  assert.strictEqual(weddingConfig.events.length, 3);
-  assert.strictEqual(weddingConfig.events[0].title, 'Haldi');
-  assert.strictEqual(weddingConfig.events[0].date, '2026-11-18');
-  assert.strictEqual(weddingConfig.events[0].startTime, '6:00 PM (Evening)');
-  assert.ok(weddingConfig.events[0].venueName.includes("Akka’s House"));
+it('weddingConfig contains 4 ceremonies with Haldi and Mehendi sharing the exact same time', () => {
+  assert.strictEqual(weddingConfig.events.length, 4);
 
-  assert.strictEqual(weddingConfig.events[1].title, 'Gajula Function & Pathanam');
-  assert.strictEqual(weddingConfig.events[1].date, '2026-11-19');
-  assert.strictEqual(weddingConfig.events[1].startTime, '11:00 AM (Morning)');
-  assert.ok(weddingConfig.events[1].venueName.includes("Akka’s House"));
+  // Haldi Ceremony
+  const haldi = weddingConfig.events.find(e => e.id === 'event-haldi')!;
+  assert.ok(haldi, 'Haldi ceremony must exist');
+  assert.strictEqual(haldi.date, '2026-11-18');
+  assert.strictEqual(haldi.startTime, '6:00 PM (Evening)');
+  assert.strictEqual(haldi.venueName, 'Bride’s Residence');
 
-  assert.strictEqual(weddingConfig.events[2].title, 'Marriage (Sumuhūrtham)');
-  assert.strictEqual(weddingConfig.events[2].date, '2026-11-20');
-  assert.strictEqual(weddingConfig.events[2].venueName, 'Sravya Gardens');
+  // Mehendi Ceremony (shares same time with Haldi)
+  const mehendi = weddingConfig.events.find(e => e.id === 'event-mehendi')!;
+  assert.ok(mehendi, 'Mehendi ceremony must exist');
+  assert.strictEqual(mehendi.date, '2026-11-18');
+  assert.strictEqual(mehendi.startTime, '6:00 PM (Evening)');
+  assert.strictEqual(mehendi.venueName, 'Bride’s Residence');
+
+  // Gajula Function & Pathanam
+  const gajula = weddingConfig.events.find(e => e.id === 'event-gajula')!;
+  assert.ok(gajula, 'Gajula function must exist');
+  assert.strictEqual(gajula.date, '2026-11-19');
+  assert.strictEqual(gajula.startTime, '11:00 AM (Morning)');
+  assert.strictEqual(gajula.venueName, 'Bride’s Residence');
+
+  // Marriage
+  const marriage = weddingConfig.events.find(e => e.id === 'event-marriage')!;
+  assert.ok(marriage, 'Marriage ceremony must exist');
+  assert.strictEqual(marriage.date, '2026-11-20');
+  assert.strictEqual(marriage.startTime, '10:57 AM (Morning)');
+  assert.strictEqual(marriage.venueName, 'Sravya Gardens');
+});
+
+it('strictly verifies zero occurrences of Akka in all event cards and config', () => {
+  const configString = JSON.stringify(weddingConfig);
+  assert.strictEqual(
+    configString.toLowerCase().includes('akka'),
+    false,
+    'weddingConfig must not contain the word Akka'
+  );
 });
 
 // 2. Countdown and Time calculations
@@ -95,12 +119,10 @@ it('generateGoogleCalendarUrl formats template URL properly', () => {
 it('RSVP saves locally and summary reflects actual response counts accurately', () => {
   const testKey = 'test_rsvp_key_' + Date.now();
   
-  // Initial empty check
   assert.strictEqual(getStoredRsvps(testKey).length, 0);
   const initialSummary = calculateRsvpSummary(testKey);
   assert.strictEqual(initialSummary.total, 0);
 
-  // Save 1 attending guest with 3 count
   saveRsvpLocally(testKey, {
     name: 'Ananya Sharma',
     attendance: 'coming',
@@ -108,7 +130,6 @@ it('RSVP saves locally and summary reflects actual response counts accurately', 
     message: 'Congratulations!'
   });
 
-  // Save 1 declining response
   saveRsvpLocally(testKey, {
     name: 'Rahul Varma',
     attendance: 'not-coming',

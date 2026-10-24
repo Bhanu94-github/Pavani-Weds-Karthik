@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "npx.cmd tsx test/wedding.test.ts"
+    "test": "node_modules\\.bin\\tsx test/wedding.test.ts"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",

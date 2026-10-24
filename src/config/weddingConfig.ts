@@ -45,21 +45,39 @@ export const weddingConfig: WeddingConfig = {
   events: [
     {
       id: 'event-haldi',
-      title: 'Haldi',
+      title: 'Haldi Ceremony',
       teluguTitle: 'పసుపు వేడుక (హల్దీ)',
       date: '2026-11-18',
       displayDate: '18th November 2026 (Wednesday)',
       startTime: '6:00 PM (Evening)',
-      venueName: 'Bride’s Residence (Akka’s House)',
-      displayAddress: 'At our residence (Akka’s House), Nizamabad, Telangana',
+      venueName: 'Bride’s Residence',
+      displayAddress: 'At our residence, Nizamabad, Telangana',
       mapUrl: 'https://maps.google.com/?q=Nizamabad+Telangana',
       description:
-        'A sacred turmeric ceremony blessing the bride with radiant beauty, love, laughter, and auspicious rituals with near and dear ones.',
+        'A sacred turmeric ceremony blessing the bride with radiant beauty, love, and auspicious rituals with near and dear ones.',
       attireNote: 'Suggested Attire: Traditional Yellow, Turmeric or Festive Floral Silk',
       displayOrder: 1,
       isConfirmedForBrideSide: true,
       isAwaitingConfirmation: false,
       iconName: 'sun'
+    },
+    {
+      id: 'event-mehendi',
+      title: 'Mehendi Ceremony',
+      teluguTitle: 'మెహందీ వేడుక',
+      date: '2026-11-18',
+      displayDate: '18th November 2026 (Wednesday)',
+      startTime: '6:00 PM (Evening)',
+      venueName: 'Bride’s Residence',
+      displayAddress: 'At our residence, Nizamabad, Telangana',
+      mapUrl: 'https://maps.google.com/?q=Nizamabad+Telangana',
+      description:
+        'An enchanting celebration of intricate henna artistry, music, joy, and festive melodies shared with close family.',
+      attireNote: 'Suggested Attire: Festive Greens, Vibrant Florals or Silk Kurtas',
+      displayOrder: 2,
+      isConfirmedForBrideSide: true,
+      isAwaitingConfirmation: false,
+      iconName: 'sparkles'
     },
     {
       id: 'event-gajula',
@@ -68,16 +86,16 @@ export const weddingConfig: WeddingConfig = {
       date: '2026-11-19',
       displayDate: '19th November 2026 (Thursday)',
       startTime: '11:00 AM (Morning)',
-      venueName: 'Bride’s Residence (Akka’s House)',
-      displayAddress: 'At our residence (Akka’s House), Nizamabad, Telangana',
+      venueName: 'Bride’s Residence',
+      displayAddress: 'At our residence, Nizamabad, Telangana',
       mapUrl: 'https://maps.google.com/?q=Nizamabad+Telangana',
       description:
         'Traditional bangling ceremony (Gajula Function) and auspicious Pathanam prayers adorning the bride with green bangles, floral garlands, and divine blessings.',
       attireNote: 'Suggested Attire: Auspicious Green or Traditional Silk Saree',
-      displayOrder: 2,
+      displayOrder: 3,
       isConfirmedForBrideSide: true,
       isAwaitingConfirmation: false,
-      iconName: 'sparkles'
+      iconName: 'flower'
     },
     {
       id: 'event-marriage',
@@ -93,7 +111,7 @@ export const weddingConfig: WeddingConfig = {
       description:
         'The solemn wedding rituals, Jeelakarra Bellam, Mangalasutra Dharana, and Saptapadi solemnized in the sacred presence of family and elders.',
       attireNote: 'Suggested Attire: Traditional Indian Festive / Kanjeevaram Silks & Kurtas',
-      displayOrder: 3,
+      displayOrder: 4,
       isConfirmedForBrideSide: true,
       isAwaitingConfirmation: false,
       iconName: 'heart'

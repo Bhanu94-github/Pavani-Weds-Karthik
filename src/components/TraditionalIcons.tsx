@@ -109,6 +109,46 @@ export const HaldiBowlIcon: React.FC<{ size?: number; className?: string }> = ({
   </svg>
 );
 
+export const MehendiHandIcon: React.FC<{ size?: number; className?: string }> = ({ size = 56, className = '' }) => (
+  <svg
+    viewBox="0 0 80 80"
+    width={size}
+    height={size}
+    className={className}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient id="hennaColor" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#9C2738" />
+        <stop offset="50%" stopColor="#C5A059" />
+        <stop offset="100%" stopColor="#6B1D2F" />
+      </linearGradient>
+      <radialGradient id="mandalaGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stopColor="#F7E7B4" />
+        <stop offset="100%" stopColor="#DFC287" />
+      </radialGradient>
+    </defs>
+    {/* Elegant Henna Floral Mandala */}
+    <circle cx="40" cy="40" r="26" stroke="url(#hennaColor)" strokeWidth="1.5" strokeDasharray="3 3" />
+    <circle cx="40" cy="40" r="18" fill="url(#mandalaGlow)" opacity="0.25" stroke="url(#hennaColor)" strokeWidth="1.5" />
+    <circle cx="40" cy="40" r="10" stroke="url(#hennaColor)" strokeWidth="2" />
+    <circle cx="40" cy="40" r="4" fill="url(#hennaColor)" />
+    {/* 8 Floral Petals */}
+    <path d="M40 18 C37 25, 43 25, 40 18 Z" fill="url(#hennaColor)" />
+    <path d="M40 62 C37 55, 43 55, 40 62 Z" fill="url(#hennaColor)" />
+    <path d="M18 40 C25 37, 25 43, 18 40 Z" fill="url(#hennaColor)" />
+    <path d="M62 40 C55 37, 55 43, 62 40 Z" fill="url(#hennaColor)" />
+    <path d="M25 25 C31 30, 27 34, 25 25 Z" fill="url(#hennaColor)" />
+    <path d="M55 25 C49 30, 53 34, 55 25 Z" fill="url(#hennaColor)" />
+    <path d="M25 55 C31 50, 27 46, 25 55 Z" fill="url(#hennaColor)" />
+    <path d="M55 55 C49 50, 53 46, 55 55 Z" fill="url(#hennaColor)" />
+    {/* Paisley flourish */}
+    <path d="M40 8 C48 10, 52 14, 50 18" stroke="url(#hennaColor)" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M40 72 C48 70, 52 66, 50 62" stroke="url(#hennaColor)" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>
+);
+
 export const BanglesIcon: React.FC<{ size?: number; className?: string }> = ({ size = 56, className = '' }) => (
   <svg
     viewBox="0 0 80 80"

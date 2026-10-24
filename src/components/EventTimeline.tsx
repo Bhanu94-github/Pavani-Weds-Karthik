@@ -25,9 +25,12 @@ export const EventTimeline: React.FC<Props> = ({ events }) => {
           <span className="ornament-leaf">❦</span>
           <span className="line-part"></span>
         </div>
+        <p className="schedule-sub-description">
+          Please join us in celebrating each sacred milestone of traditional rituals, music, and divine blessings.
+        </p>
       </div>
 
-      <div className="events-luxury-grid">
+      <div className="events-uniform-grid">
         {sortedEvents.map(event => (
           <EventCard key={event.id} event={event} />
         ))}
@@ -39,18 +42,18 @@ export const EventTimeline: React.FC<Props> = ({ events }) => {
 
       <style>{`
         .timeline-luxury-section {
-          margin: 3rem 0;
+          margin: 3.5rem 0;
         }
         .schedule-header-box {
           text-align: center;
-          margin-bottom: 2.2rem;
+          margin-bottom: 2.4rem;
         }
         .schedule-main-title {
           font-family: var(--font-display);
-          font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+          font-size: clamp(1.8rem, 3.8vw, 2.4rem);
           font-weight: 700;
-          color: #2D5A43; /* Deep celebratory emerald matching user card */
-          letter-spacing: 0.15em;
+          color: #2D5A43; /* Deep festive emerald matching traditional invitation */
+          letter-spacing: 0.16em;
           margin: 0;
         }
         .schedule-ornament-line {
@@ -59,7 +62,7 @@ export const EventTimeline: React.FC<Props> = ({ events }) => {
           justify-content: center;
           gap: 1rem;
           max-width: 300px;
-          margin: 0.5rem auto 0;
+          margin: 0.6rem auto 0;
         }
         .line-part {
           flex: 1;
@@ -70,17 +73,26 @@ export const EventTimeline: React.FC<Props> = ({ events }) => {
           color: var(--gold-dark);
           font-size: 1.2rem;
         }
-        .events-luxury-grid {
+        .schedule-sub-description {
+          font-family: var(--font-serif);
+          font-size: clamp(0.96rem, 1.6vw, 1.08rem);
+          color: var(--ink-secondary);
+          max-width: 620px;
+          margin: 0.8rem auto 0;
+          line-height: 1.6;
+        }
+        .events-uniform-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.6rem;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.8rem;
           align-items: stretch;
         }
-        @media (max-width: 900px) {
-          .events-luxury-grid {
+        @media (max-width: 768px) {
+          .events-uniform-grid {
             grid-template-columns: 1fr;
             max-width: 500px;
             margin: 0 auto;
+            gap: 1.5rem;
           }
         }
       `}</style>

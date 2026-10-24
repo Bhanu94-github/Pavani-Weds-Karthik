@@ -9,6 +9,7 @@ import { ShareInvitation } from './components/ShareInvitation';
 import { ClosingSection } from './components/ClosingSection';
 import { AudioPlayer } from './components/AudioPlayer';
 import { CeremonialEnvelopeModal } from './components/CeremonialEnvelopeModal';
+import { FallingFlowers } from './components/FallingFlowers';
 
 export const App: React.FC = () => {
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(true);
@@ -65,6 +66,9 @@ export const App: React.FC = () => {
           <ClosingSection config={weddingConfig} />
         </main>
       </div>
+
+      {/* Falling Romantic Flower Petals */}
+      <FallingFlowers />
 
       {/* Floating Traditional Shehnai / Music Player */}
       <AudioPlayer config={weddingConfig.music} />

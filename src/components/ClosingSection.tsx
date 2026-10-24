@@ -15,27 +15,27 @@ export const ClosingSection: React.FC<Props> = ({ config }) => {
 
   return (
     <footer className="closing-grand-section" aria-labelledby="closing-title">
-      <div className="botanical-divider" aria-hidden="true">
-        <span>❧</span>
+      <div className="royal-divider" aria-hidden="true">
+        <span className="royal-divider-symbol">❖</span>
       </div>
 
-      <div className="closing-content-box">
-        <span className="closing-kicker">Auspicious Blessings</span>
-        <h2 id="closing-title" className="closing-title">{closing.title}</h2>
-        <p className="closing-message-text">{closing.message}</p>
+      <div className="closing-parchment-box">
+        <span className="eyebrow-tag">Divine Blessings</span>
+        <h2 id="closing-title" className="section-heading-luxury">{closing.title}</h2>
+        <p className="closing-message-narrative">{closing.message}</p>
 
-        <div className="couple-signature-block">
-          <p className="signature-names">
+        <div className="royal-signature-area">
+          <p className="signature-couple-text">
             <span>{couple.bride.displayName}</span>
-            <span className="signature-ampersand">&amp;</span>
+            <span className="signature-amp">&amp;</span>
             <span>{couple.groom.displayName}</span>
           </p>
-          <p className="gratitude-note">{closing.gratitudeNote}</p>
+          <p className="signature-families-label">{closing.gratitudeNote}</p>
         </div>
 
         <button
           type="button"
-          className="back-to-top-btn"
+          className="scroll-top-pill"
           onClick={scrollToTop}
           aria-label="Back to top of wedding invitation"
         >
@@ -43,11 +43,11 @@ export const ClosingSection: React.FC<Props> = ({ config }) => {
           <span>Back to Top</span>
         </button>
 
-        <div className="footer-copyright">
+        <div className="royal-copyright-tag">
           <p>
-            Celebrated with <Heart size={13} className="text-wine-inline" /> by the Palivela Family
+            With divine blessings and affection <Heart size={13} className="heart-inline-icon" /> Palivela Family
           </p>
-          <small className="date-tag">20 November 2026 • Nizamabad, Telangana</small>
+          <small className="wedding-date-stamp">20 November 2026 • Sravya Gardens, Nizamabad</small>
         </div>
       </div>
 
@@ -55,95 +55,84 @@ export const ClosingSection: React.FC<Props> = ({ config }) => {
         .closing-grand-section {
           text-align: center;
           margin-top: 4rem;
-          padding-top: 1rem;
         }
-        .closing-content-box {
-          max-width: 680px;
+        .closing-parchment-box {
+          max-width: 720px;
           margin: 0 auto;
         }
-        .closing-kicker {
-          font-size: 0.8rem;
-          text-transform: uppercase;
-          letter-spacing: 0.18em;
-          color: var(--gold-dark);
-          font-weight: 700;
-          display: block;
-          margin-bottom: 0.4rem;
-        }
-        .closing-title {
-          font-family: var(--font-serif);
-          font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-          color: var(--wine);
-          margin-bottom: 1rem;
-        }
-        .closing-message-text {
-          font-size: 1.08rem;
-          line-height: 1.7;
-          color: var(--ink);
+        .closing-message-narrative {
+          font-size: 1.1rem;
+          line-height: 1.75;
+          color: var(--ink-primary);
           margin-bottom: 2rem;
         }
-        .couple-signature-block {
-          margin: 2rem 0;
+        .royal-signature-area {
+          margin: 2.2rem 0;
         }
-        .signature-names {
+        .signature-couple-text {
           font-family: var(--font-script);
-          font-size: clamp(2.4rem, 6vw, 3.8rem);
-          color: var(--wine);
+          font-size: clamp(2.5rem, 6.5vw, 4.2rem);
+          color: var(--royal-wine);
           line-height: 1.1;
         }
-        .signature-ampersand {
+        .signature-amp {
           display: inline-block;
           font-family: var(--font-serif);
           font-size: 0.55em;
-          margin: 0 0.3em;
+          margin: 0 0.35em;
           vertical-align: 0.15em;
           color: var(--gold-dark);
         }
-        .gratitude-note {
+        .signature-families-label {
           font-family: var(--font-sans);
-          font-size: 0.92rem;
-          font-weight: 600;
-          color: var(--ink-light);
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: var(--gold-dark);
           margin-top: 0.5rem;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
         }
-        .back-to-top-btn {
+        .scroll-top-pill {
           display: inline-flex;
           align-items: center;
-          gap: 0.4rem;
-          background: transparent;
-          border: 1px solid var(--hairline);
+          gap: 0.45rem;
+          background: var(--silk-cream);
+          border: 1px solid var(--hairline-gold);
           border-radius: var(--radius-full);
-          padding: 0.45rem 1.1rem;
+          padding: 0.5rem 1.2rem;
           font-family: var(--font-sans);
-          font-size: 0.84rem;
-          color: var(--ink-light);
+          font-size: 0.86rem;
+          font-weight: 600;
+          color: var(--ink-secondary);
           cursor: pointer;
-          transition: all var(--transition-fast);
-          margin-top: 1.5rem;
+          transition: all 0.2s ease;
+          margin-top: 1.8rem;
         }
-        .back-to-top-btn:hover {
-          border-color: var(--gold);
-          color: var(--wine);
-          background: var(--paper-cream);
+        .scroll-top-pill:hover {
+          border-color: var(--gold-metallic);
+          color: var(--royal-wine);
+          background: var(--silk-pure);
+          box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
         }
-        .footer-copyright {
-          margin-top: 2.5rem;
-          padding-top: 1.5rem;
-          border-top: 1px solid var(--hairline);
-          font-size: 0.85rem;
+        .royal-copyright-tag {
+          margin-top: 2.8rem;
+          padding-top: 1.8rem;
+          border-top: 1px dashed var(--hairline-gold);
+          font-size: 0.88rem;
           color: var(--ink-muted);
         }
-        .text-wine-inline {
-          color: var(--wine);
+        .heart-inline-icon {
+          color: var(--royal-wine);
           display: inline;
           vertical-align: middle;
         }
-        .date-tag {
+        .wedding-date-stamp {
           display: block;
-          font-size: 0.78rem;
-          margin-top: 0.3rem;
+          font-size: 0.8rem;
+          margin-top: 0.4rem;
           color: var(--gold-dark);
+          font-weight: 600;
+          letter-spacing: 0.05em;
         }
       `}</style>
     </footer>

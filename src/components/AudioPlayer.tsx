@@ -11,7 +11,6 @@ export const AudioPlayer: React.FC<Props> = ({ config }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Autoplay is strictly disabled by default for accessibility & browser policies
     if (audioRef.current) {
       audioRef.current.volume = 0.5;
     }
@@ -47,31 +46,31 @@ export const AudioPlayer: React.FC<Props> = ({ config }) => {
 
       <button
         type="button"
-        className={`audio-floating-btn ${isPlaying ? 'is-playing' : ''}`}
+        className={`audio-royal-btn ${isPlaying ? 'is-playing' : ''}`}
         onClick={toggleAudio}
         aria-label={isPlaying ? 'Pause celebratory wedding music' : 'Play celebratory wedding music'}
         title={isPlaying ? `Pause: ${config.title}` : `Play: ${config.title}`}
       >
         {isPlaying ? (
           <>
-            <span className="audio-pulse-indicator" aria-hidden="true"></span>
+            <span className="audio-disc-indicator" aria-hidden="true"></span>
             <Volume2 size={18} />
-            <span className="audio-label">Music On</span>
+            <span className="audio-btn-text">Music On</span>
           </>
         ) : (
           <>
-            <Music size={18} />
-            <VolumeX size={16} />
-            <span className="audio-label">Music Off</span>
+            <Music size={17} />
+            <VolumeX size={15} />
+            <span className="audio-btn-text">Shehnai Music</span>
           </>
         )}
       </button>
 
       <style>{`
-        .audio-label {
+        .audio-btn-text {
           font-family: var(--font-sans);
           font-size: 0.82rem;
-          font-weight: 600;
+          font-weight: 700;
           letter-spacing: 0.04em;
         }
       `}</style>

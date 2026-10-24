@@ -4,7 +4,6 @@ import { InvitationHero } from './components/InvitationHero';
 import { CountdownSection } from './components/CountdownSection';
 import { EventTimeline } from './components/EventTimeline';
 import { VenueSection } from './components/VenueSection';
-import { PhotoGallery } from './components/PhotoGallery';
 import { RSVPForm } from './components/RSVPForm';
 import { ShareInvitation } from './components/ShareInvitation';
 import { ClosingSection } from './components/ClosingSection';
@@ -35,45 +34,22 @@ export const App: React.FC = () => {
         onOpen={() => setIsEnvelopeOpen(false)}
       />
 
+      {/* Ultra-clean Luxury Royal Container without any blurry raster side images */}
       <div className="invitation-container" id="main-invitation">
-        {/* Left & Right Heritage Floral Border Frames */}
-        <img
-          className="floral-frame floral-frame--left"
-          src="/assets/floral-left.png"
-          alt=""
-          aria-hidden="true"
-        />
-        <img
-          className="floral-frame floral-frame--right"
-          src="/assets/floral-right.png"
-          alt=""
-          aria-hidden="true"
-        />
-
         <main className="invitation-content">
-          {/* 1. Opening Invitation Hero */}
+          {/* 1. Opening Regal Invitation Hero */}
           <InvitationHero config={weddingConfig} />
 
-          {/* 2. Muhurtham Countdown & Calendar Integration */}
+          {/* 2. Muhūrtham Countdown & Save to Calendar */}
           <CountdownSection config={weddingConfig} />
 
-          {/* 3. Ceremonies & Events Timeline */}
+          {/* 3. Ceremonies & Auspicious Itinerary */}
           <EventTimeline events={weddingConfig.events} />
 
-          {/* 4. Main Wedding Venue & Directions */}
+          {/* 4. Wedding Venue & Google Maps Navigation */}
           <VenueSection config={weddingConfig} />
 
-          {/* 5. Photo Gallery & Moments */}
-          {weddingConfig.gallery.enabled && (
-            <PhotoGallery
-              photos={weddingConfig.gallery.photos}
-              title={weddingConfig.gallery.sectionTitle}
-              subtitle={weddingConfig.gallery.sectionSubtitle}
-              noticeIfEmpty={weddingConfig.gallery.noticeIfEmpty}
-            />
-          )}
-
-          {/* 6. RSVP Form */}
+          {/* 5. Smart RSVP & WhatsApp Confirmation */}
           {weddingConfig.rsvp.enabled && (
             <RSVPForm
               config={weddingConfig.rsvp}
@@ -82,20 +58,20 @@ export const App: React.FC = () => {
             />
           )}
 
-          {/* 7. Share Invitation */}
+          {/* 6. Share Invitation & Copy Link */}
           <ShareInvitation config={weddingConfig.share} onToast={showToast} />
 
-          {/* 8. Graceful Closing */}
+          {/* 7. Graceful Family Closing & Auspicious Blessings */}
           <ClosingSection config={weddingConfig} />
         </main>
       </div>
 
-      {/* Floating Celebratory Audio Player */}
+      {/* Floating Traditional Shehnai / Music Player */}
       <AudioPlayer config={weddingConfig.music} />
 
       {/* Toast Feedback Notification */}
       {toastMessage && (
-        <aside className="toast-banner" role="status" aria-live="polite">
+        <aside className="toast-luxury-banner" role="status" aria-live="polite">
           <span>{toastMessage}</span>
         </aside>
       )}

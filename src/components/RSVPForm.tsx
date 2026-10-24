@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import { Heart, Send, CheckCircle2, MessageSquare, ChevronDown, ChevronUp, Users } from 'lucide-react';
+import { Heart, Send, CheckCircle2, MessageSquare, ChevronDown, ChevronUp, Users, Sparkles } from 'lucide-react';
 import { RsvpConfig } from '../types/wedding';
 import { saveRsvpLocally, calculateRsvpSummary, buildWhatsAppRsvpUrl, RsvpSummary } from '../utils/rsvpStorage';
 
@@ -35,14 +35,13 @@ export const RSVPForm: React.FC<Props> = ({ config, brideName, groomName }) => {
       return;
     }
     if (!attendance) {
-      setErrorMessage('Please select whether you will be joining the celebrations.');
+      setErrorMessage('Please indicate whether you will be celebrating with us.');
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      // 1. Genuine persistence to LocalStorage
       saveRsvpLocally(config.storageKey, {
         name: trimmedName,
         attendance,
@@ -50,7 +49,6 @@ export const RSVPForm: React.FC<Props> = ({ config, brideName, groomName }) => {
         message: message.trim() || undefined
       });
 
-      // 2. If an API endpoint is configured, forward to API
       if (config.apiEndpoint) {
         try {
           await fetch(config.apiEndpoint, {
@@ -64,19 +62,18 @@ export const RSVPForm: React.FC<Props> = ({ config, brideName, groomName }) => {
             })
           });
         } catch {
-          // Logged gracefully; local storage retains record
+          // Graceful fallback
         }
       }
 
       setSubmitted(true);
 
-      // Trigger celebratory confetti if attending
       if (attendance === 'coming') {
         confetti({
-          particleCount: 80,
-          spread: 70,
+          particleCount: 85,
+          spread: 75,
           origin: { y: 0.6 },
-          colors: ['#C5A059', '#70283D', '#E8B4B8', '#FAF5EE']
+          colors: ['#D4AF37', '#7A1A32', '#FFFDF9', '#E5C378']
         });
       }
     } catch {
@@ -95,24 +92,26 @@ export const RSVPForm: React.FC<Props> = ({ config, brideName, groomName }) => {
     : '';
 
   return (
-    <section className="rsvp-section" aria-labelledby="rsvp-title">
-      <div className="section-header-block">
-        <span className="eyebrow-text">RSVP</span>
-        <h2 id="rsvp-title" className="section-title">Join in Our Celebrations</h2>
-        <p className="section-subtitle">
-          Your gracious presence is our blessing. Please let us know if you will be celebrating with us.
+    <section className="rsvp-luxury-section" aria-labelledby="rsvp-title">
+      <div className="rsvp-header-block">
+        <span className="eyebrow-tag">Celebrate With Us</span>
+        <h2 id="rsvp-title" className="section-heading-luxury">
+          RSVP &amp; Attendance
+        </h2>
+        <p className="section-intro-luxury">
+          Your gracious presence and divine blessings will make our wedding celebrations truly unforgettable.
         </p>
       </div>
 
-      <div className="rsvp-form-card">
+      <div className="rsvp-luxury-card">
         {submitted ? (
-          <div className="rsvp-success-box" role="status" aria-live="polite">
-            <CheckCircle2 size={48} className="success-icon" />
-            <h3 className="success-title">Thank You, {name}!</h3>
-            <p className="success-message">
+          <div className="rsvp-success-state" role="status" aria-live="polite">
+            <CheckCircle2 size={52} className="success-check-icon" />
+            <h3 className="success-guest-title">Thank You, {name}!</h3>
+            <p className="success-narrative">
               {attendance === 'coming'
-                ? `Your attendance response has been received. ${brideName} and ${groomName} joyfully look forward to celebrating with you!`
-                : 'Thank you for letting us know. Your warm blessings remain deeply appreciated.'}
+                ? `Your attendance response has been received with joy. ${brideName} and ${groomName} look forward to welcoming you!`
+                : 'Thank you for letting us know. Your heartfelt prayers and blessings are deeply cherished.'}
             </p>
 
             {whatsAppUrl && (
@@ -120,16 +119,16 @@ export const RSVPForm: React.FC<Props> = ({ config, brideName, groomName }) => {
                 href={whatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-gold whatsapp-rsvp-btn"
+                className="btn-royal-gold whatsapp-confirm-btn"
               >
                 <MessageSquare size={18} />
-                <span>Send Confirmation via WhatsApp</span>
+                <span>Confirm Instantly via WhatsApp</span>
               </a>
             )}
 
             <button
               type="button"
-              className="btn-outline rsvp-another-btn"
+              className="btn-royal-outline rsvp-reset-btn"
               onClick={() => {
                 setSubmitted(false);
                 setName('');
@@ -141,22 +140,22 @@ export const RSVPForm: React.FC<Props> = ({ config, brideName, groomName }) => {
             </button>
           </div>
         ) : (
-          <form className="rsvp-form" onSubmit={handleSubmit} noValidate>
+          <form className="rsvp-luxury-form" onSubmit={handleSubmit} noValidate>
             {errorMessage && (
-              <div className="form-error-alert" role="alert">
+              <div className="rsvp-error-banner" role="alert">
                 <span>{errorMessage}</span>
               </div>
             )}
 
-            <div className="form-group">
-              <label htmlFor="rsvp-guest-name" className="form-label">
-                Your Full Name <span className="required-star">*</span>
+            <div className="input-field-group">
+              <label htmlFor="rsvp-guest-name" className="field-label">
+                Your Full Name <span className="gold-star">*</span>
               </label>
               <input
                 id="rsvp-guest-name"
                 type="text"
-                className="form-input"
-                placeholder="Enter your name"
+                className="luxury-text-input"
+                placeholder="Enter your full name"
                 value={name}
                 onChange={e => setName(e.target.value)}
                 maxLength={100}
@@ -164,58 +163,54 @@ export const RSVPForm: React.FC<Props> = ({ config, brideName, groomName }) => {
               />
             </div>
 
-            <fieldset className="form-group fieldset-reset">
-              <legend className="form-label">
-                Will you be attending? <span className="required-star">*</span>
+            <fieldset className="input-field-group attendance-fieldset">
+              <legend className="field-label">
+                Will you be attending the celebrations? <span className="gold-star">*</span>
               </legend>
-              <div className="attendance-options-grid">
-                <label className={`radio-card ${attendance === 'coming' ? 'is-selected' : ''}`}>
+              <div className="attendance-pill-grid">
+                <label className={`attendance-option-pill ${attendance === 'coming' ? 'selected' : ''}`}>
                   <input
                     type="radio"
                     name="attendance"
                     value="coming"
                     checked={attendance === 'coming'}
                     onChange={() => setAttendance('coming')}
-                    className="radio-input"
+                    className="radio-hidden"
                   />
-                  <span className="radio-label-text">
-                    <Heart size={18} className="text-wine" />
-                    <span>Count Us In! ❤️</span>
-                  </span>
+                  <Heart size={18} className="option-icon" />
+                  <span>Joyfully Attending! ❤️</span>
                 </label>
 
-                <label className={`radio-card ${attendance === 'not-coming' ? 'is-selected' : ''}`}>
+                <label className={`attendance-option-pill ${attendance === 'not-coming' ? 'selected' : ''}`}>
                   <input
                     type="radio"
                     name="attendance"
                     value="not-coming"
                     checked={attendance === 'not-coming'}
                     onChange={() => setAttendance('not-coming')}
-                    className="radio-input"
+                    className="radio-hidden"
                   />
-                  <span className="radio-label-text">
-                    <span>Regretfully Miss It 🕊️</span>
-                  </span>
+                  <span>Regretfully Miss It 🕊️</span>
                 </label>
               </div>
             </fieldset>
 
             {attendance === 'coming' && (
-              <div className="form-group guest-count-group">
-                <label htmlFor="rsvp-guest-count" className="form-label">
+              <div className="input-field-group guest-selector-group">
+                <label htmlFor="rsvp-guest-count" className="field-label">
                   Number of Attending Guests
                 </label>
-                <div className="guest-select-wrapper">
-                  <Users size={16} className="input-icon" />
+                <div className="select-with-icon">
+                  <Users size={18} className="select-icon" />
                   <select
                     id="rsvp-guest-count"
-                    className="form-select"
+                    className="luxury-select-input"
                     value={guestCount}
                     onChange={e => setGuestCount(Number(e.target.value))}
                   >
-                    {[1, 2, 3, 4, 5, 6, 7, 8].map(num => (
-                      <option key={num} value={num}>
-                        {num} {num === 1 ? 'Guest' : 'Guests'}
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map(n => (
+                      <option key={n} value={n}>
+                        {n} {n === 1 ? 'Guest' : 'Guests'}
                       </option>
                     ))}
                   </select>
@@ -223,14 +218,14 @@ export const RSVPForm: React.FC<Props> = ({ config, brideName, groomName }) => {
               </div>
             )}
 
-            <div className="form-group">
-              <label htmlFor="rsvp-message" className="form-label">
-                Warm Wishes / Blessings for the Couple <span className="optional-text">(Optional)</span>
+            <div className="input-field-group">
+              <label htmlFor="rsvp-message" className="field-label">
+                Wishes &amp; Blessings for Pavani &amp; Karthik <span className="optional-tag">(Optional)</span>
               </label>
               <textarea
                 id="rsvp-message"
-                className="form-textarea"
-                placeholder="Share your prayers and heartfelt wishes with Pavani & Karthik..."
+                className="luxury-textarea-input"
+                placeholder="Share your affectionate blessings..."
                 rows={3}
                 value={message}
                 onChange={e => setMessage(e.target.value)}
@@ -238,251 +233,256 @@ export const RSVPForm: React.FC<Props> = ({ config, brideName, groomName }) => {
               />
             </div>
 
-            <div className="form-actions">
+            <div className="form-submit-row">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="btn-wine submit-rsvp-btn"
+                className="btn-royal-wine submit-action-btn"
               >
                 <Send size={18} />
                 <span>{isSubmitting ? 'Recording RSVP...' : 'Submit RSVP Response'}</span>
+                <Sparkles size={16} />
               </button>
             </div>
           </form>
         )}
 
-        {/* Real Local RSVP Summary Accordion */}
-        <div className="rsvp-summary-drawer">
+        {/* Real Device RSVP Summary */}
+        <div className="rsvp-drawer-container">
           <button
             type="button"
-            className="summary-accordion-btn"
+            className="drawer-toggle-btn"
             onClick={() => setShowSummary(!showSummary)}
             aria-expanded={showSummary}
           >
-            <span>Your Device RSVP Summary ({summary.total} Saved)</span>
+            <span>Saved Responses on This Device ({summary.total})</span>
             {showSummary ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
           </button>
 
           {showSummary && (
-            <div className="summary-stat-grid">
-              <div className="summary-stat-card">
-                <span className="stat-number">{summary.coming}</span>
-                <span className="stat-label">Attending Guests</span>
+            <div className="summary-stat-row">
+              <div className="stat-box">
+                <span className="stat-count">{summary.coming}</span>
+                <span className="stat-caption">Attending Guests</span>
               </div>
-              <div className="summary-stat-card">
-                <span className="stat-number">{summary.notComing}</span>
-                <span className="stat-label">Blessings Received</span>
+              <div className="stat-box">
+                <span className="stat-count">{summary.notComing}</span>
+                <span className="stat-caption">Regrets</span>
               </div>
-              <div className="summary-stat-card">
-                <span className="stat-number">{summary.total}</span>
-                <span className="stat-label">Total Responses</span>
+              <div className="stat-box">
+                <span className="stat-count">{summary.total}</span>
+                <span className="stat-caption">Total Responses</span>
               </div>
             </div>
           )}
         </div>
       </div>
 
-      <div className="botanical-divider" aria-hidden="true">
-        <span>❧</span>
+      <div className="royal-divider" aria-hidden="true">
+        <span className="royal-divider-symbol">❖</span>
       </div>
 
       <style>{`
-        .rsvp-section {
+        .rsvp-luxury-section {
           margin: 3.5rem 0;
           text-align: center;
         }
-        .rsvp-form-card {
-          background: var(--paper-pure);
-          border: 1px solid var(--hairline);
+        .rsvp-luxury-card {
+          background: rgba(255, 255, 255, 0.98);
+          border: 1.5px solid var(--gold-metallic);
           border-radius: var(--radius-lg);
-          padding: clamp(1.8rem, 4vw, 2.5rem);
-          max-width: 650px;
+          padding: clamp(2rem, 5vw, 2.8rem);
+          max-width: 680px;
           margin: 0 auto;
-          box-shadow: var(--shadow-sm);
+          box-shadow: var(--shadow-royal);
           text-align: left;
         }
-        .form-error-alert {
-          background: rgba(166, 93, 101, 0.12);
-          border: 1px solid var(--wine);
-          color: var(--wine-dark);
-          padding: 0.75rem 1rem;
+        .rsvp-error-banner {
+          background: rgba(92, 18, 37, 0.1);
+          border: 1px solid var(--royal-wine);
+          color: var(--royal-wine-deep);
+          padding: 0.8rem 1.1rem;
           border-radius: var(--radius-sm);
-          margin-bottom: 1.2rem;
-          font-size: 0.9rem;
-          font-weight: 500;
-        }
-        .form-group {
-          margin-bottom: 1.2rem;
-        }
-        .fieldset-reset {
-          border: none;
-          padding: 0;
-          margin: 0 0 1.2rem 0;
-        }
-        .form-label {
-          display: block;
-          font-family: var(--font-sans);
-          font-size: 0.94rem;
-          font-weight: 600;
-          color: var(--ink);
-          margin-bottom: 0.45rem;
-        }
-        .required-star {
-          color: var(--wine);
-        }
-        .optional-text {
-          font-weight: 400;
-          font-size: 0.82rem;
-          color: var(--ink-muted);
-        }
-        .form-input, .form-textarea, .form-select {
-          width: 100%;
-          padding: 0.75rem 0.9rem;
-          border: 1px solid var(--hairline);
-          border-radius: var(--radius-sm);
-          background: var(--paper-cream);
-          font-family: var(--font-sans);
-          font-size: 0.95rem;
-          color: var(--ink);
-          transition: border-color var(--transition-fast), background-color var(--transition-fast);
-        }
-        .form-input:focus, .form-textarea:focus, .form-select:focus {
-          border-color: var(--gold);
-          background: var(--paper-pure);
-          outline: none;
-        }
-        .guest-select-wrapper {
-          position: relative;
-        }
-        .input-icon {
-          position: absolute;
-          left: 0.9rem;
-          top: 50%;
-          transform: translateY(-50%);
-          color: var(--ink-muted);
-          pointer-events: none;
-        }
-        .form-select {
-          padding-left: 2.4rem;
-        }
-        .attendance-options-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0.8rem;
-        }
-        .radio-card {
-          border: 1px solid var(--hairline);
-          border-radius: var(--radius-sm);
-          padding: 0.8rem 1rem;
-          background: var(--paper-cream);
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          transition: all var(--transition-fast);
-        }
-        .radio-card:hover {
-          border-color: var(--gold);
-        }
-        .radio-card.is-selected {
-          border-color: var(--wine);
-          background: var(--blush-soft);
-        }
-        .radio-input {
-          accent-color: var(--wine);
-          width: 18px;
-          height: 18px;
-        }
-        .radio-label-text {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
+          margin-bottom: 1.4rem;
           font-size: 0.92rem;
           font-weight: 600;
-          color: var(--ink);
         }
-        .form-actions {
-          margin-top: 1.5rem;
+        .input-field-group {
+          margin-bottom: 1.4rem;
         }
-        .submit-rsvp-btn {
+        .attendance-fieldset {
+          border: none;
+          padding: 0;
+          margin: 0 0 1.4rem 0;
+        }
+        .field-label {
+          display: block;
+          font-family: var(--font-sans);
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: var(--ink-primary);
+          margin-bottom: 0.5rem;
+        }
+        .gold-star {
+          color: var(--royal-wine);
+        }
+        .optional-tag {
+          font-weight: 400;
+          font-size: 0.84rem;
+          color: var(--ink-muted);
+        }
+        .luxury-text-input, .luxury-textarea-input, .luxury-select-input {
           width: 100%;
-          padding: 0.85rem;
-          font-size: 1.02rem;
+          padding: 0.85rem 1rem;
+          border: 1.5px solid var(--hairline-gold);
+          border-radius: var(--radius-sm);
+          background: var(--silk-cream);
+          font-family: var(--font-sans);
+          font-size: 0.96rem;
+          color: var(--ink-primary);
+          transition: all 0.2s ease;
         }
-        .rsvp-success-box {
+        .luxury-text-input:focus, .luxury-textarea-input:focus, .luxury-select-input:focus {
+          border-color: var(--gold-metallic);
+          background: var(--silk-pure);
+          box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+          outline: none;
+        }
+        .select-with-icon {
+          position: relative;
+        }
+        .select-icon {
+          position: absolute;
+          left: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          color: var(--gold-dark);
+          pointer-events: none;
+        }
+        .luxury-select-input {
+          padding-left: 2.8rem;
+        }
+        .attendance-pill-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+        }
+        .attendance-option-pill {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.55rem;
+          padding: 0.9rem 1rem;
+          border: 1.5px solid var(--hairline-gold);
+          border-radius: var(--radius-sm);
+          background: var(--silk-cream);
+          cursor: pointer;
+          font-family: var(--font-sans);
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: var(--ink-primary);
+          transition: all 0.2s ease;
+        }
+        .attendance-option-pill:hover {
+          border-color: var(--gold-metallic);
+        }
+        .attendance-option-pill.selected {
+          border-color: var(--royal-wine);
+          background: rgba(92, 18, 37, 0.08);
+          color: var(--royal-wine-deep);
+          box-shadow: 0 0 10px rgba(92, 18, 37, 0.12);
+        }
+        .radio-hidden {
+          position: absolute;
+          opacity: 0;
+          pointer-events: none;
+        }
+        .option-icon {
+          color: var(--royal-wine);
+        }
+        .form-submit-row {
+          margin-top: 1.8rem;
+        }
+        .submit-action-btn {
+          width: 100%;
+          padding: 0.95rem;
+          font-size: 1.05rem;
+        }
+        .rsvp-success-state {
           text-align: center;
-          padding: 1.5rem 0.5rem;
+          padding: 1.8rem 1rem;
         }
-        .success-icon {
+        .success-check-icon {
           color: #2E7D32;
           margin-bottom: 0.8rem;
         }
-        .success-title {
-          font-family: var(--font-serif);
-          font-size: 1.7rem;
-          color: var(--wine);
-          margin-bottom: 0.4rem;
+        .success-guest-title {
+          font-family: var(--font-display);
+          font-size: 1.8rem;
+          color: var(--royal-wine);
         }
-        .success-message {
-          color: var(--ink-light);
-          font-size: 1rem;
-          max-width: 480px;
-          margin: 0 auto 1.5rem;
+        .success-narrative {
+          color: var(--ink-secondary);
+          font-size: 1.02rem;
+          max-width: 500px;
+          margin: 0.5rem auto 1.8rem;
           line-height: 1.6;
         }
-        .whatsapp-rsvp-btn {
+        .whatsapp-confirm-btn {
+          width: 100%;
           margin-bottom: 1rem;
+          padding: 0.95rem;
+        }
+        .rsvp-reset-btn {
           width: 100%;
         }
-        .rsvp-another-btn {
-          width: 100%;
+        .rsvp-drawer-container {
+          margin-top: 2rem;
+          border-top: 1px dashed var(--hairline-gold);
+          padding-top: 1.2rem;
         }
-        .rsvp-summary-drawer {
-          margin-top: 1.8rem;
-          border-top: 1px solid var(--hairline);
-          padding-top: 1rem;
-        }
-        .summary-accordion-btn {
+        .drawer-toggle-btn {
           display: flex;
           align-items: center;
           justify-content: space-between;
           width: 100%;
           background: transparent;
           border: none;
-          color: var(--wine);
+          color: var(--gold-dark);
           font-family: var(--font-sans);
           font-size: 0.88rem;
-          font-weight: 600;
+          font-weight: 700;
           cursor: pointer;
-          padding: 0.4rem 0;
         }
-        .summary-stat-grid {
+        .summary-stat-row {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 0.8rem;
-          margin-top: 0.8rem;
+          gap: 0.9rem;
+          margin-top: 1rem;
           text-align: center;
         }
-        .summary-stat-card {
-          background: var(--paper-cream);
+        .stat-box {
+          background: var(--silk-cream);
+          border: 1px solid var(--hairline-gold);
           border-radius: var(--radius-sm);
-          padding: 0.7rem 0.4rem;
+          padding: 0.85rem 0.5rem;
         }
-        .stat-number {
+        .stat-count {
           display: block;
-          font-family: var(--font-serif);
-          font-size: 1.5rem;
+          font-family: var(--font-display);
+          font-size: 1.6rem;
           font-weight: 700;
-          color: var(--wine);
+          color: var(--royal-wine);
         }
-        .stat-label {
-          font-size: 0.72rem;
+        .stat-caption {
+          font-size: 0.74rem;
           color: var(--ink-muted);
           text-transform: uppercase;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.1em;
+          font-weight: 600;
         }
-        @media (max-width: 500px) {
-          .attendance-options-grid {
+        @media (max-width: 550px) {
+          .attendance-pill-grid {
             grid-template-columns: 1fr;
           }
         }

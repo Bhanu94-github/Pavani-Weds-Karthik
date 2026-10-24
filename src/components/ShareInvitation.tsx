@@ -42,19 +42,21 @@ export const ShareInvitation: React.FC<Props> = ({ config, onToast }) => {
   const whatsappShareUrl = `https://api.whatsapp.com/send?text=${shareText}`;
 
   return (
-    <section className="share-section" aria-labelledby="share-title">
-      <div className="section-header-block">
-        <span className="eyebrow-text">Spread the Joy</span>
-        <h2 id="share-title" className="section-title">Share the Invitation</h2>
-        <p className="section-subtitle">
-          Pass along the celebration details to beloved family members and friends.
+    <section className="share-luxury-section" aria-labelledby="share-title">
+      <div className="share-header-block">
+        <span className="eyebrow-tag">Blessings &amp; Joy</span>
+        <h2 id="share-title" className="section-heading-luxury">
+          Share the Wedding Invitation
+        </h2>
+        <p className="section-intro-luxury">
+          Please forward this sacred invitation to beloved elders, family members, and friends.
         </p>
       </div>
 
-      <div className="share-buttons-container">
+      <div className="share-buttons-row">
         <button
           type="button"
-          className="btn-gold share-main-btn"
+          className="btn-royal-gold share-btn-item"
           onClick={handleShare}
           aria-label="Share invitation"
         >
@@ -66,7 +68,7 @@ export const ShareInvitation: React.FC<Props> = ({ config, onToast }) => {
           href={whatsappShareUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-outline whatsapp-share-link"
+          className="btn-royal-outline share-btn-item whatsapp-btn"
           aria-label="Share via WhatsApp"
         >
           <MessageCircle size={18} />
@@ -75,7 +77,7 @@ export const ShareInvitation: React.FC<Props> = ({ config, onToast }) => {
 
         <button
           type="button"
-          className="btn-outline copy-link-btn"
+          className="btn-royal-outline share-btn-item"
           onClick={handleCopyLink}
           aria-label="Copy invitation link"
         >
@@ -85,32 +87,37 @@ export const ShareInvitation: React.FC<Props> = ({ config, onToast }) => {
       </div>
 
       <style>{`
-        .share-section {
+        .share-luxury-section {
           margin: 3.5rem 0;
           text-align: center;
         }
-        .share-buttons-container {
+        .share-buttons-row {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
           justify-content: center;
           gap: 1rem;
-          max-width: 600px;
-          margin: 1.5rem auto 0;
+          max-width: 650px;
+          margin: 0 auto;
         }
-        .share-main-btn, .whatsapp-share-link, .copy-link-btn {
-          padding: 0.8rem 1.6rem;
-          font-size: 0.96rem;
+        .share-btn-item {
+          padding: 0.85rem 1.6rem;
+        }
+        .whatsapp-btn {
+          border-color: #25D366;
+          color: #128C7E;
+        }
+        .whatsapp-btn:hover {
+          background: rgba(37, 211, 102, 0.1);
         }
         .text-green {
           color: #2E7D32;
         }
         @media (max-width: 600px) {
-          .share-buttons-container {
+          .share-buttons-row {
             flex-direction: column;
-            width: 100%;
           }
-          .share-main-btn, .whatsapp-share-link, .copy-link-btn {
+          .share-btn-item {
             width: 100%;
           }
         }

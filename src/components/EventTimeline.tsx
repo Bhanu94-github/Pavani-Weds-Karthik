@@ -7,7 +7,6 @@ interface Props {
 }
 
 export const EventTimeline: React.FC<Props> = ({ events }) => {
-  // Sort chronologically by date and displayOrder
   const sortedEvents = [...events].sort((a, b) => {
     if (a.date !== b.date) {
       return a.date.localeCompare(b.date);
@@ -16,43 +15,44 @@ export const EventTimeline: React.FC<Props> = ({ events }) => {
   });
 
   return (
-    <section className="events-timeline-section" aria-labelledby="events-heading">
-      <div className="section-header-block">
-        <span className="eyebrow-text">Ceremonial Itinerary</span>
-        <h2 id="events-heading" className="section-title">Wedding Celebrations &amp; Rituals</h2>
-        <p className="section-subtitle">
-          Join us in each auspicious milestone of laughter, song, traditional rituals, and blessings.
+    <section className="timeline-luxury-section" aria-labelledby="events-heading">
+      <div className="timeline-header-block">
+        <span className="eyebrow-tag">Sacred Traditions</span>
+        <h2 id="events-heading" className="section-heading-luxury">
+          Wedding Celebrations &amp; Ceremonies
+        </h2>
+        <p className="section-intro-luxury">
+          We warmly invite you to join us in each cherished milestone of laughter, song, traditional vows, and auspicious blessings.
         </p>
       </div>
 
-      <div className="events-cards-grid">
+      <div className="events-luxury-grid">
         {sortedEvents.map(event => (
           <EventCard key={event.id} event={event} />
         ))}
       </div>
 
-      <div className="botanical-divider" aria-hidden="true">
-        <span>✿</span>
+      <div className="royal-divider" aria-hidden="true">
+        <span className="royal-divider-symbol">❖</span>
       </div>
 
       <style>{`
-        .events-timeline-section {
+        .timeline-luxury-section {
           margin: 3.5rem 0;
         }
-        .section-header-block {
+        .timeline-header-block {
           text-align: center;
-          margin-bottom: 2rem;
         }
-        .events-cards-grid {
+        .events-luxury-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
+          gap: 1.6rem;
           align-items: stretch;
         }
-        @media (max-width: 992px) {
-          .events-cards-grid {
+        @media (max-width: 900px) {
+          .events-luxury-grid {
             grid-template-columns: 1fr;
-            max-width: 520px;
+            max-width: 500px;
             margin: 0 auto;
           }
         }

@@ -1,0 +1,60 @@
+{
+  "sourceUrl": "https://karthik-wedding-invitation.onrender.com/",
+  "auditedAt": "2026-10-24T09:30:00+05:30",
+  "couple": {
+    "groom": "Karthik Reddy",
+    "bride": "Pavani Kalyani",
+    "eyebrowFamilySurname": "GADE’s",
+    "invitationText": "With the blessings of our families, we joyfully invite you to join us as we begin a beautiful new chapter of our lives. Your presence and blessings will make our wedding celebrations truly special."
+  },
+  "mainWedding": {
+    "date": "2026-11-20",
+    "displayDate": "20 November 2026",
+    "time": "10:57 AM",
+    "isoTimestamp": "2026-11-20T10:57:00+05:30",
+    "timezone": "Asia/Kolkata",
+    "venueName": "Sravya Gardens",
+    "address": "Nizamabad, Telangana",
+    "googleMapsUrl": "https://maps.app.goo.gl/Sk1w4BNFZi8VtTjXA"
+  },
+  "events": [
+    {
+      "id": "ref-mehendi",
+      "title": "Mehendi",
+      "date": "2026-11-18",
+      "displayDate": "18 November 2026",
+      "startTime": "7:00 PM onwards",
+      "venueName": "At our residence",
+      "displayAddress": "At our residence, Srinagar, Nizamabad",
+      "googleMapsUrl": "https://maps.app.goo.gl/Yj1qwNNJtdE3b1Pp7",
+      "locationCategory": "groom-residence-unconfirmed-for-bride"
+    },
+    {
+      "id": "ref-haldi",
+      "title": "Haldi",
+      "date": "2026-11-19",
+      "displayDate": "19 November 2026",
+      "startTime": "11:00 AM",
+      "venueName": "At our residence",
+      "displayAddress": "At our residence, Srinagar, Nizamabad",
+      "googleMapsUrl": "https://maps.app.goo.gl/Yj1qwNNJtdE3b1Pp7",
+      "locationCategory": "groom-residence-unconfirmed-for-bride"
+    },
+    {
+      "id": "ref-wedding",
+      "title": "Wedding Ceremony",
+      "date": "2026-11-20",
+      "displayDate": "20 November 2026",
+      "startTime": "10:57 AM",
+      "venueName": "Sravya Gardens",
+      "displayAddress": "Sravya Gardens, Nizamabad, Telangana",
+      "googleMapsUrl": "https://maps.app.goo.gl/Sk1w4BNFZi8VtTjXA",
+      "locationCategory": "confirmed-main-wedding-venue"
+    }
+  ],
+  "rsvpEndpoints": {
+    "submit": "/api/rsvp",
+    "summary": "/api/rsvp/summary",
+    "status": "HTTP 500 Disconnected / Missing Database Backend on Render"
+  }
+}

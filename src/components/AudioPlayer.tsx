@@ -1,0 +1,80 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { Volume2, VolumeX, Music } from 'lucide-react';
+import { MusicTrackConfig } from '../types/wedding';
+
+interface Props {
+  config: MusicTrackConfig;
+}
+
+export const AudioPlayer: React.FC<Props> = ({ config }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    // Autoplay is strictly disabled by default for accessibility & browser policies
+    if (audioRef.current) {
+      audioRef.current.volume = 0.5;
+    }
+  }, []);
+
+  const toggleAudio = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(err => {
+          console.warn('Audio playback was prevented by browser policy:', err);
+        });
+    }
+  };
+
+  if (!config.enabled) return null;
+
+  return (
+    <>
+      <audio
+        ref={audioRef}
+        src={config.audioSrc}
+        preload="metadata"
+        loop
+        onEnded={() => setIsPlaying(false)}
+      />
+
+      <button
+        type="button"
+        className={`audio-floating-btn ${isPlaying ? 'is-playing' : ''}`}
+        onClick={toggleAudio}
+        aria-label={isPlaying ? 'Pause celebratory wedding music' : 'Play celebratory wedding music'}
+        title={isPlaying ? `Pause: ${config.title}` : `Play: ${config.title}`}
+      >
+        {isPlaying ? (
+          <>
+            <span className="audio-pulse-indicator" aria-hidden="true"></span>
+            <Volume2 size={18} />
+            <span className="audio-label">Music On</span>
+          </>
+        ) : (
+          <>
+            <Music size={18} />
+            <VolumeX size={16} />
+            <span className="audio-label">Music Off</span>
+          </>
+        )}
+      </button>
+
+      <style>{`
+        .audio-label {
+          font-family: var(--font-sans);
+          font-size: 0.82rem;
+          font-weight: 600;
+          letter-spacing: 0.04em;
+        }
+      `}</style>
+    </>
+  );
+};

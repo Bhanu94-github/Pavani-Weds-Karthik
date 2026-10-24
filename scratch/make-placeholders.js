@@ -1,0 +1,49 @@
+import fs from 'fs';
+import path from 'path';
+
+const dir = 'public/photos';
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir, { recursive: true });
+}
+
+function makeSvg(title, subtitle, accentColor, bgColor) {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <radialGradient id="bg-${accentColor.replace('#', '')}" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#FFF9F5" />
+      <stop offset="65%" stop-color="${bgColor}" />
+      <stop offset="100%" stop-color="#EAD7C5" />
+    </radialGradient>
+    <linearGradient id="gold-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C5A059" />
+      <stop offset="50%" stop-color="#F3E7C4" />
+      <stop offset="100%" stop-color="#98765B" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg-${accentColor.replace('#', '')})" />
+  <rect x="24" y="24" width="752" height="552" rx="12" fill="none" stroke="url(#gold-stroke)" stroke-width="2" stroke-dasharray="10 5" opacity="0.8" />
+  <rect x="36" y="36" width="728" height="528" rx="8" fill="none" stroke="${accentColor}" stroke-width="1.2" opacity="0.35" />
+
+  <g transform="translate(400, 240)">
+    <circle r="60" fill="#FAF4ED" stroke="url(#gold-stroke)" stroke-width="2" />
+    <path d="M-20,0 C-20,-20 0,-30 0,-40 C0,-30 20,-20 20,0 C20,20 0,30 0,40 C0,30 -20,20 -20,0 Z" fill="${accentColor}" opacity="0.8" />
+    <circle cx="0" cy="0" r="10" fill="#C5A059" />
+  </g>
+
+  <text x="400" y="360" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="34" font-weight="700" fill="${accentColor}" letter-spacing="1">
+    ${title}
+  </text>
+  <text x="400" y="405" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="16" font-weight="400" fill="#5A4237" letter-spacing="0.5">
+    ${subtitle}
+  </text>
+  <text x="400" y="460" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="13" font-weight="600" fill="#98765B" letter-spacing="1.5">
+    [ PHOTOGRAPH PLACEHOLDER • PAVANI &amp; KARTHIK ]
+  </text>
+</svg>`;
+}
+
+fs.writeFileSync(path.join(dir, 'wedding-art-1.jpg'), makeSvg('Sacred Celebrations', 'Traditional Vows & Auspicious Muhurtham', '#70283D', '#FBF0E4'));
+fs.writeFileSync(path.join(dir, 'wedding-art-2.jpg'), makeSvg('Auspicious Rituals', 'Haldi, Mehendi & Family Blessings', '#8E2840', '#FFF5EA'));
+fs.writeFileSync(path.join(dir, 'wedding-art-3.jpg'), makeSvg('Floral Grandeur', 'Blossoms of Marigold, Rose & Jasmine', '#70283D', '#F8EFE6'));
+
+console.log('Successfully written placeholder image files!');

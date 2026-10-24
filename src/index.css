@@ -1,0 +1,466 @@
+/* ==========================================================
+   PREMIUM INDIAN WEDDING DESIGN SYSTEM - BRIDE'S PERSPECTIVE
+   Pavani Kalyani & Karthik Reddy Wedding Celebration
+   ========================================================== */
+
+:root {
+  color-scheme: light;
+  
+  /* Primary Royal Palettes */
+  --wine-dark: #4D1320;
+  --wine: #6B1D2F;
+  --wine-rich: #7E2238;
+  --wine-soft: #913149;
+  
+  /* Antique Gold & Zari */
+  --gold-dark: #8C6A2E;
+  --gold: #C5A059;
+  --gold-light: #DFC287;
+  --gold-shimmer: #F5E8C9;
+  --gold-gradient: linear-gradient(135deg, #C5A059 0%, #F5E8C9 50%, #A67C33 100%);
+  
+  /* Blush, Rose Silk & Warm Ivories */
+  --rosewood: #A65D65;
+  --blush: #E8B4B8;
+  --blush-soft: #F9EBEA;
+  --paper-pure: #FFFFFF;
+  --paper: #FAF5EE;
+  --paper-cream: #F5EEE2;
+  --paper-warm: #EFE4D3;
+  
+  /* Traditional Indian Auspicious Accents */
+  --emerald: #2E5339;
+  --emerald-soft: #E8F0EA;
+  --ink: #3B2820;
+  --ink-light: #5E463B;
+  --ink-muted: #846D60;
+  --hairline: rgba(197, 160, 89, 0.35);
+  --hairline-rose: rgba(166, 93, 101, 0.25);
+  
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Shadows & Elevations */
+  --shadow-sm: 0 2px 8px rgba(77, 19, 32, 0.05);
+  --shadow-md: 0 8px 24px rgba(77, 19, 32, 0.08);
+  --shadow-lg: 0 16px 40px rgba(77, 19, 32, 0.12);
+  --shadow-gold: 0 8px 30px rgba(197, 160, 89, 0.25);
+  
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--paper);
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  background:
+    radial-gradient(circle at 10% 12%, rgba(232, 180, 184, 0.18), transparent 450px),
+    radial-gradient(circle at 90% 25%, rgba(197, 160, 89, 0.12), transparent 500px),
+    radial-gradient(circle at 50% 85%, rgba(232, 180, 184, 0.15), transparent 600px),
+    var(--paper);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Accessibility Skip Link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 1000;
+  background: var(--wine-dark);
+  color: var(--paper-pure);
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Focus Visible Styling */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Main Container Frame */
+.invitation-container {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: var(--paper-pure);
+  box-shadow: 0 0 60px rgba(77, 19, 32, 0.08);
+  isolation: isolate;
+}
+
+/* Outer Zari Border Lining */
+.invitation-container::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid var(--hairline);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.invitation-container::after {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  border: 1px dashed rgba(197, 160, 89, 0.4);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Side Floral Frames */
+.floral-frame {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(35px, 8vw, 110px);
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  opacity: 0.95;
+}
+
+.floral-frame--left {
+  left: 0;
+  object-position: left top;
+}
+
+.floral-frame--right {
+  right: 0;
+  object-position: right top;
+}
+
+/* Inner Content Area */
+.invitation-content {
+  position: relative;
+  z-index: 5;
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(2.2rem, 10vw, 7.5rem) 4rem;
+}
+
+/* Botanical Ornaments and Dividers */
+.botanical-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: min(100%, 380px);
+  margin: 2rem auto;
+  color: var(--gold);
+}
+
+.botanical-divider::before,
+.botanical-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.botanical-divider span {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.gold-ornament {
+  color: var(--gold);
+  display: inline-block;
+  user-select: none;
+}
+
+/* Typography Presets */
+.eyebrow-text {
+  font-family: var(--font-sans);
+  color: var(--wine);
+  font-size: clamp(0.75rem, 1.4vw, 0.95rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  text-align: center;
+  margin-bottom: 0.6rem;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  color: var(--wine);
+  font-size: clamp(1.9rem, 3.8vw, 2.75rem);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-family: var(--font-sans);
+  color: var(--ink-light);
+  font-size: clamp(0.95rem, 1.6vw, 1.08rem);
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 2rem;
+  line-height: 1.55;
+}
+
+/* Buttons */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.6rem;
+  background: var(--gold-gradient);
+  color: var(--wine-dark);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.98rem;
+  border: 1px solid var(--gold-dark);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.28);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(197, 160, 89, 0.4);
+  filter: brightness(1.04);
+}
+
+.btn-wine {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.6rem;
+  background: var(--wine);
+  color: var(--paper-pure);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.98rem;
+  border: 1px solid var(--wine-dark);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-wine:hover {
+  background: var(--wine-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.72rem 1.5rem;
+  background: transparent;
+  color: var(--wine);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid var(--wine);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-outline:hover {
+  background: var(--blush-soft);
+  color: var(--wine-dark);
+  transform: translateY(-1px);
+}
+
+/* Floating Audio Player Button */
+.audio-floating-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  background: var(--wine);
+  color: var(--paper-pure);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg), 0 0 16px rgba(197, 160, 89, 0.4);
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.audio-floating-btn:hover {
+  transform: scale(1.05);
+  background: var(--wine-dark);
+}
+
+.audio-pulse-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  animation: pulseGold 2s infinite ease-in-out;
+}
+
+@keyframes pulseGold {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+
+/* Toast Notifications */
+.toast-banner {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--wine-dark);
+  color: var(--paper-pure);
+  border: 1px solid var(--gold);
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translate(-50%, 20px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* Envelope / Ceremonial Intro Modal */
+.envelope-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, rgba(77, 19, 32, 0.95), rgba(40, 9, 16, 0.98));
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.envelope-card {
+  position: relative;
+  background: var(--paper-cream);
+  border: 2px solid var(--gold);
+  border-radius: var(--radius-md);
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(197, 160, 89, 0.3);
+}
+
+.wax-seal {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #9E2642, #5C1223);
+  border: 2px solid var(--gold);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-light);
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  user-select: none;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+  .invitation-container::before { inset: 6px; }
+  .invitation-container::after { inset: 10px; }
+  .invitation-content {
+    padding: 2rem clamp(1.4rem, 6vw, 2.5rem) 3rem;
+  }
+  .floral-frame {
+    width: clamp(22px, 6vw, 45px);
+    opacity: 0.85;
+  }
+  .audio-floating-btn {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.55rem 0.95rem;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .invitation-content {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .floral-frame {
+    display: none; /* Keep text clean & readable on small phones */
+  }
+  .section-title {
+    font-size: 1.8rem;
+  }
+}

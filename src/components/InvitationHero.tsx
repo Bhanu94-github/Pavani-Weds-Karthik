@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, Clock, MapPin, Sparkles } from 'lucide-react';
 import { WeddingConfig } from '../types/wedding';
+import { GaneshaIcon } from './TraditionalIcons';
 
 interface Props {
   config: WeddingConfig;
@@ -11,30 +12,38 @@ export const InvitationHero: React.FC<Props> = ({ config }) => {
 
   return (
     <header className="royal-hero-header" aria-labelledby="couple-heading">
-      {/* Auspicious Shloka & Invocation */}
-      <div className="shloka-banner" aria-label="Auspicious Invocation">
-        <span className="shloka-gold">॥ శ్రీ లక్ష్మీ ప్రసన్నా ॥</span>
-        <span className="eyebrow-tag">{familyHeader.invitationKicker}</span>
+      {/* Sacred Lord Ganesha Emblem & Invocation */}
+      <div className="ganesha-invocation-block" aria-label="Auspicious Invocation">
+        <GaneshaIcon size={64} className="ganesha-emblem-svg" />
+        <span className="shloka-gold">॥ శ్రీ గణేశాయ నమః ॥</span>
       </div>
 
-      {/* Royal Arch Frame Motifs */}
-      <div className="royal-divider" aria-hidden="true">
-        <span className="royal-divider-symbol">❖</span>
+      <p className="hero-blessing-intro">{familyHeader.blessingWording}</p>
+
+      {/* "Wedding Celebrations of" typography from user card */}
+      <div className="wedding-celebrations-banner">
+        <span className="celebrations-script">Wedding Celebrations</span>
+        <span className="celebrations-of">of</span>
       </div>
 
-      <p className="hero-blessing-text">{familyHeader.blessingWording}</p>
-
-      {/* Royal Couple Typography */}
+      {/* Couple Names */}
       <div className="couple-names-wrapper">
         <h1 className="hero-couple-names" id="couple-heading">
           <span className="bride-title gold-shimmer-text">{couple.bride.fullName}</span>
           <span className="weds-flourish">
             <span className="flourish-line"></span>
-            <span className="weds-calligraphy">weds</span>
+            <span className="weds-calligraphy">&amp;</span>
             <span className="flourish-line"></span>
           </span>
           <span className="groom-title gold-shimmer-text">{couple.groom.fullName}</span>
         </h1>
+
+        {/* Bride Parents' Lineage */}
+        <div className="parents-lineage-box">
+          <p className="parents-names-text">
+            D/o <strong>Smt. Gaddaguti Pushpa</strong> &amp; <strong>Sri Gaddaguti Veeraswamy</strong>
+          </p>
+        </div>
       </div>
 
       {couple.hashtag && (
@@ -45,14 +54,19 @@ export const InvitationHero: React.FC<Props> = ({ config }) => {
         </div>
       )}
 
-      {/* Luxury Metallic Metadata Cards */}
+      {/* Warm Presence Invitation Line */}
+      <div className="presence-welcome-box">
+        <p className="presence-welcome-text">{familyHeader.welcomeMessage}</p>
+      </div>
+
+      {/* Key Dates & Venue Metadata Cards */}
       <div className="royal-meta-grid" role="region" aria-label="Wedding Date, Time and Venue Details">
         <div className="royal-meta-card">
           <div className="royal-meta-icon" aria-hidden="true">
             <Calendar size={22} />
           </div>
           <div className="royal-meta-info">
-            <span className="meta-kicker">Auspicious Date</span>
+            <span className="meta-kicker">Wedding Date</span>
             <strong className="meta-value">{mainWedding.displayDate}</strong>
           </div>
         </div>
@@ -62,7 +76,7 @@ export const InvitationHero: React.FC<Props> = ({ config }) => {
             <Clock size={22} />
           </div>
           <div className="royal-meta-info">
-            <span className="meta-kicker">Lagna Muhūrtham</span>
+            <span className="meta-kicker">Sumuhūrtham</span>
             <strong className="meta-value">{mainWedding.muhurthamTime}</strong>
           </div>
         </div>
@@ -72,16 +86,11 @@ export const InvitationHero: React.FC<Props> = ({ config }) => {
             <MapPin size={22} />
           </div>
           <div className="royal-meta-info">
-            <span className="meta-kicker">Sacred Venue</span>
+            <span className="meta-kicker">Main Venue</span>
             <strong className="meta-value">{mainWedding.venueName}</strong>
             <span className="meta-subtext">{mainWedding.landmark}</span>
           </div>
         </div>
-      </div>
-
-      {/* Illuminated Welcome Box */}
-      <div className="welcome-parchment-box">
-        <p className="welcome-narrative">{familyHeader.welcomeMessage}</p>
       </div>
 
       <div className="royal-divider" aria-hidden="true">
@@ -93,31 +102,53 @@ export const InvitationHero: React.FC<Props> = ({ config }) => {
           text-align: center;
           margin-bottom: 2.5rem;
         }
-        .shloka-banner {
+        .ganesha-invocation-block {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 0.35rem;
-          margin-bottom: 0.6rem;
+          gap: 0.4rem;
+          margin-bottom: 0.8rem;
+        }
+        .ganesha-emblem-svg {
+          filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.4));
         }
         .shloka-gold {
           font-family: var(--font-display);
-          font-size: 1.25rem;
+          font-size: 1.28rem;
           font-weight: 700;
-          color: var(--gold-dark);
-          letter-spacing: 0.1em;
-          text-shadow: 0 1px 2px rgba(212, 175, 55, 0.3);
+          color: var(--royal-wine);
+          letter-spacing: 0.08em;
+          text-shadow: 0 1px 2px rgba(212, 175, 55, 0.35);
         }
-        .hero-blessing-text {
+        .hero-blessing-intro {
           font-family: var(--font-serif);
-          font-size: clamp(1.05rem, 2vw, 1.3rem);
+          font-size: clamp(1.05rem, 2vw, 1.25rem);
           font-style: italic;
           color: var(--ink-secondary);
-          margin-bottom: 0.6rem;
+          max-width: 620px;
+          margin: 0.6rem auto 0.4rem;
           letter-spacing: 0.02em;
         }
+        .wedding-celebrations-banner {
+          margin: 0.4rem 0 0.8rem;
+        }
+        .celebrations-script {
+          display: block;
+          font-family: var(--font-script);
+          font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+          color: var(--royal-wine);
+          line-height: 1.1;
+        }
+        .celebrations-of {
+          display: block;
+          font-family: var(--font-serif);
+          font-size: 1.15rem;
+          font-style: italic;
+          color: var(--gold-dark);
+          margin-top: -0.3rem;
+        }
         .couple-names-wrapper {
-          padding: 0.5rem 0;
+          padding: 0.3rem 0;
         }
         .hero-couple-names {
           margin: 0;
@@ -126,7 +157,7 @@ export const InvitationHero: React.FC<Props> = ({ config }) => {
         .bride-title, .groom-title {
           display: block;
           font-family: var(--font-display);
-          font-size: clamp(2.3rem, 6.2vw, 4.4rem);
+          font-size: clamp(2.3rem, 6.2vw, 4.2rem);
           font-weight: 700;
           letter-spacing: 0.03em;
           filter: drop-shadow(0 2px 4px rgba(61, 8, 20, 0.15));
@@ -136,8 +167,8 @@ export const InvitationHero: React.FC<Props> = ({ config }) => {
           align-items: center;
           justify-content: center;
           gap: 1.4rem;
-          max-width: 340px;
-          margin: 0.35rem auto;
+          max-width: 280px;
+          margin: 0.2rem auto;
         }
         .flourish-line {
           flex: 1;
@@ -146,9 +177,26 @@ export const InvitationHero: React.FC<Props> = ({ config }) => {
         }
         .weds-calligraphy {
           font-family: var(--font-script);
-          font-size: clamp(2.4rem, 5.5vw, 3.4rem);
+          font-size: clamp(2.2rem, 5vw, 3rem);
           color: var(--royal-wine);
           line-height: 0.9;
+        }
+        .parents-lineage-box {
+          margin: 0.8rem auto 0;
+          background: rgba(212, 175, 55, 0.08);
+          border: 1px dashed var(--hairline-gold);
+          border-radius: var(--radius-full);
+          display: inline-block;
+          padding: 0.5rem 1.4rem;
+        }
+        .parents-names-text {
+          font-family: var(--font-sans);
+          font-size: clamp(0.92rem, 1.6vw, 1.05rem);
+          color: var(--royal-wine-deep);
+          letter-spacing: 0.03em;
+        }
+        .parents-names-text strong {
+          color: var(--royal-wine);
         }
         .wedding-badge {
           display: inline-flex;
@@ -163,21 +211,32 @@ export const InvitationHero: React.FC<Props> = ({ config }) => {
           font-weight: 600;
           color: var(--royal-wine);
           margin-top: 1.2rem;
-          margin-bottom: 2.2rem;
+          margin-bottom: 1.5rem;
         }
         .badge-sparkle {
           color: var(--gold-metallic);
+        }
+        .presence-welcome-box {
+          max-width: 680px;
+          margin: 0 auto 2rem;
+          padding: 0 1rem;
+        }
+        .presence-welcome-text {
+          font-family: var(--font-serif);
+          font-size: clamp(1rem, 1.8vw, 1.16rem);
+          line-height: 1.7;
+          color: var(--ink-secondary);
         }
         .royal-meta-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 1.2rem;
           max-width: 860px;
-          margin: 0 auto 2.2rem;
+          margin: 0 auto;
           text-align: left;
         }
         .royal-meta-card {
-          background: rgba(255, 255, 255, 0.85);
+          background: rgba(255, 255, 255, 0.9);
           border: 1px solid var(--hairline-gold);
           border-radius: var(--radius-md);
           padding: 1.1rem 1.2rem;
@@ -185,12 +244,11 @@ export const InvitationHero: React.FC<Props> = ({ config }) => {
           align-items: flex-start;
           gap: 0.9rem;
           box-shadow: 0 6px 20px rgba(92, 18, 37, 0.05);
-          transition: transform 0.2s var(--ease-royal), box-shadow 0.2s var(--ease-royal), border-color 0.2s var(--ease-royal);
+          transition: transform 0.2s var(--ease-royal), box-shadow 0.2s var(--ease-royal);
         }
         .royal-meta-card:hover {
           transform: translateY(-3px);
           box-shadow: var(--shadow-royal);
-          border-color: var(--gold-metallic);
         }
         .royal-meta-icon {
           color: var(--royal-wine);
@@ -230,27 +288,13 @@ export const InvitationHero: React.FC<Props> = ({ config }) => {
           overflow: hidden;
           text-overflow: ellipsis;
         }
-        .welcome-parchment-box {
-          max-width: 720px;
-          margin: 0 auto;
-          background: rgba(255, 253, 249, 0.95);
-          border: 1px dashed var(--hairline-gold);
-          border-radius: var(--radius-md);
-          padding: 1.4rem 1.8rem;
-          box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.05);
-        }
-        .welcome-narrative {
-          font-size: clamp(1.02rem, 1.8vw, 1.18rem);
-          line-height: 1.75;
-          color: var(--ink-primary);
-        }
         @media (max-width: 768px) {
           .royal-meta-grid {
             grid-template-columns: 1fr;
             max-width: 440px;
           }
-          .welcome-parchment-box {
-            padding: 1.2rem 1.2rem;
+          .parents-lineage-box {
+            padding: 0.4rem 1rem;
           }
         }
       `}</style>

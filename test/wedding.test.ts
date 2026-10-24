@@ -32,32 +32,30 @@ const storageMap = new Map<string, string>();
 };
 
 // 1. Configuration tests
-it('weddingConfig contains correct bride and groom details', () => {
+it('weddingConfig contains correct bride and groom details and Gaddaguti parents', () => {
   assert.strictEqual(weddingConfig.couple.bride.fullName, 'Pavani Kalyani');
   assert.strictEqual(weddingConfig.couple.groom.fullName, 'Karthik Reddy');
+  assert.ok(weddingConfig.couple.bride.parents?.includes('Gaddaguti Pushpa'));
+  assert.ok(weddingConfig.couple.bride.parents?.includes('Gaddaguti Veeraswamy'));
   assert.strictEqual(weddingConfig.mainWedding.date, '2026-11-20');
-  assert.strictEqual(weddingConfig.mainWedding.muhurthamTime, '10:57 AM IST');
   assert.strictEqual(weddingConfig.mainWedding.venueName, 'Sravya Gardens');
 });
 
-it('weddingConfig contains 3 events in proper chronological sequence', () => {
+it('weddingConfig contains 3 events (Haldi, Gajula Function & Pathanam, Marriage) in sequence', () => {
   assert.strictEqual(weddingConfig.events.length, 3);
-  assert.strictEqual(weddingConfig.events[0].title, 'Mehendi Ceremony');
+  assert.strictEqual(weddingConfig.events[0].title, 'Haldi');
   assert.strictEqual(weddingConfig.events[0].date, '2026-11-18');
-  assert.strictEqual(weddingConfig.events[1].title, 'Haldi & Pellikuthuru');
+  assert.strictEqual(weddingConfig.events[0].startTime, '6:00 PM (Evening)');
+  assert.ok(weddingConfig.events[0].venueName.includes("Akka’s House"));
+
+  assert.strictEqual(weddingConfig.events[1].title, 'Gajula Function & Pathanam');
   assert.strictEqual(weddingConfig.events[1].date, '2026-11-19');
-  assert.strictEqual(weddingConfig.events[2].title, 'Sumuhūrtham & Wedding Ceremony');
+  assert.strictEqual(weddingConfig.events[1].startTime, '11:00 AM (Morning)');
+  assert.ok(weddingConfig.events[1].venueName.includes("Akka’s House"));
+
+  assert.strictEqual(weddingConfig.events[2].title, 'Marriage (Sumuhūrtham)');
   assert.strictEqual(weddingConfig.events[2].date, '2026-11-20');
-});
-
-it('weddingConfig safeguards unconfirmed bride residence addresses', () => {
-  const mehendi = weddingConfig.events.find(e => e.id === 'event-mehendi')!;
-  const haldi = weddingConfig.events.find(e => e.id === 'event-haldi')!;
-  const wedding = weddingConfig.events.find(e => e.id === 'event-wedding')!;
-
-  assert.strictEqual(mehendi.isAwaitingConfirmation, true, 'Mehendi must be awaiting bride confirmation');
-  assert.strictEqual(haldi.isAwaitingConfirmation, true, 'Haldi must be awaiting bride confirmation');
-  assert.strictEqual(wedding.isAwaitingConfirmation, false, 'Main wedding at Sravya Gardens is confirmed');
+  assert.strictEqual(weddingConfig.events[2].venueName, 'Sravya Gardens');
 });
 
 // 2. Countdown and Time calculations

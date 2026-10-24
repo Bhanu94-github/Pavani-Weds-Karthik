@@ -15,15 +15,16 @@ export const EventTimeline: React.FC<Props> = ({ events }) => {
   });
 
   return (
-    <section className="timeline-luxury-section" aria-labelledby="events-heading">
-      <div className="timeline-header-block">
-        <span className="eyebrow-tag">Sacred Traditions</span>
-        <h2 id="events-heading" className="section-heading-luxury">
-          Wedding Celebrations &amp; Ceremonies
+    <section className="timeline-luxury-section" aria-labelledby="schedule-heading">
+      <div className="schedule-header-box">
+        <h2 id="schedule-heading" className="schedule-main-title">
+          WEDDING SCHEDULE
         </h2>
-        <p className="section-intro-luxury">
-          We warmly invite you to join us in each cherished milestone of laughter, song, traditional vows, and auspicious blessings.
-        </p>
+        <div className="schedule-ornament-line" aria-hidden="true">
+          <span className="line-part"></span>
+          <span className="ornament-leaf">❦</span>
+          <span className="line-part"></span>
+        </div>
       </div>
 
       <div className="events-luxury-grid">
@@ -38,10 +39,36 @@ export const EventTimeline: React.FC<Props> = ({ events }) => {
 
       <style>{`
         .timeline-luxury-section {
-          margin: 3.5rem 0;
+          margin: 3rem 0;
         }
-        .timeline-header-block {
+        .schedule-header-box {
           text-align: center;
+          margin-bottom: 2.2rem;
+        }
+        .schedule-main-title {
+          font-family: var(--font-display);
+          font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+          font-weight: 700;
+          color: #2D5A43; /* Deep celebratory emerald matching user card */
+          letter-spacing: 0.15em;
+          margin: 0;
+        }
+        .schedule-ornament-line {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          max-width: 300px;
+          margin: 0.5rem auto 0;
+        }
+        .line-part {
+          flex: 1;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, var(--gold-metallic), transparent);
+        }
+        .ornament-leaf {
+          color: var(--gold-dark);
+          font-size: 1.2rem;
         }
         .events-luxury-grid {
           display: grid;

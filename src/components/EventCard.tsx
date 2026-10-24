@@ -1,6 +1,7 @@
 import React from 'react';
-import { Calendar, Clock, MapPin, Sparkles, Sun, Heart, Navigation, Info } from 'lucide-react';
+import { Calendar, Clock, MapPin, Sparkles, Navigation } from 'lucide-react';
 import { WeddingEvent } from '../types/wedding';
+import { HaldiBowlIcon, BanglesIcon, HomaKundamIcon } from './TraditionalIcons';
 
 interface Props {
   event: WeddingEvent;
@@ -8,32 +9,28 @@ interface Props {
 
 export const EventCard: React.FC<Props> = ({ event }) => {
   const getThemeClass = () => {
-    if (event.id.includes('mehendi')) return 'theme-mehendi';
     if (event.id.includes('haldi')) return 'theme-haldi';
-    return 'theme-wedding';
+    if (event.id.includes('gajula')) return 'theme-gajula';
+    return 'theme-marriage';
   };
 
-  const getIcon = () => {
-    switch (event.iconName) {
-      case 'sparkles':
-        return <Sparkles size={24} />;
-      case 'sun':
-        return <Sun size={24} />;
-      case 'heart':
-      default:
-        return <Heart size={24} />;
+  const getTraditionalIcon = () => {
+    if (event.id.includes('haldi')) {
+      return <HaldiBowlIcon size={48} className="trad-event-icon" />;
     }
+    if (event.id.includes('gajula')) {
+      return <BanglesIcon size={48} className="trad-event-icon" />;
+    }
+    return <HomaKundamIcon size={48} className="trad-event-icon" />;
   };
 
   return (
     <article className={`royal-event-card ${getThemeClass()}`}>
-      <div className="card-top-decoration" aria-hidden="true">
-        <span className="card-top-arch"></span>
-      </div>
+      <div className="card-top-decoration" aria-hidden="true"></div>
 
       <div className="event-card-header">
         <div className="event-icon-circle" aria-hidden="true">
-          {getIcon()}
+          {getTraditionalIcon()}
         </div>
         <div className="event-heading-group">
           <span className="event-sequence-kicker">Ritual #{event.displayOrder}</span>
@@ -50,7 +47,7 @@ export const EventCard: React.FC<Props> = ({ event }) => {
 
         <div className="spec-item">
           <Clock size={18} className="spec-icon" aria-hidden="true" />
-          <span className="spec-text">{event.startTime}</span>
+          <span className="spec-text font-semibold">{event.startTime}</span>
         </div>
 
         <div className="spec-item place-spec">
@@ -69,18 +66,10 @@ export const EventCard: React.FC<Props> = ({ event }) => {
             <span>{event.attireNote}</span>
           </div>
         )}
-
-        {/* Clear transparency for pending bride-family address */}
-        {event.isAwaitingConfirmation && (
-          <div className="pending-badge-notice" role="note">
-            <Info size={14} />
-            <span>{event.statusNote || 'Awaiting bride family confirmation of venue address'}</span>
-          </div>
-        )}
       </div>
 
       <div className="event-card-action">
-        {event.mapUrl ? (
+        {event.mapUrl && (
           <a
             href={event.mapUrl}
             target="_blank"
@@ -88,16 +77,14 @@ export const EventCard: React.FC<Props> = ({ event }) => {
             className="btn-royal-wine map-action-btn"
           >
             <Navigation size={16} />
-            <span>{event.isConfirmedForBrideSide ? 'Get Directions in Google Maps ↗' : 'View Location Area ↗'}</span>
+            <span>Get Directions in Google Maps ↗</span>
           </a>
-        ) : (
-          <span className="action-pending-text">Directions will be updated upon confirmation</span>
         )}
       </div>
 
       <style>{`
         .royal-event-card {
-          background: rgba(255, 255, 255, 0.96);
+          background: rgba(255, 255, 255, 0.98);
           border: 1.5px solid var(--hairline-gold);
           border-radius: var(--radius-md);
           padding: 1.8rem 1.6rem;
@@ -120,24 +107,24 @@ export const EventCard: React.FC<Props> = ({ event }) => {
           right: 0;
           height: 4px;
         }
-        .theme-mehendi .card-top-decoration {
-          background: linear-gradient(90deg, #133E2B, #D4AF37, #133E2B);
-        }
         .theme-haldi .card-top-decoration {
           background: linear-gradient(90deg, #B87814, #FFE082, #B87814);
         }
-        .theme-wedding .card-top-decoration {
+        .theme-gajula .card-top-decoration {
+          background: linear-gradient(90deg, #133E2B, #D4AF37, #133E2B);
+        }
+        .theme-marriage .card-top-decoration {
           background: linear-gradient(90deg, #5C1225, #D4AF37, #5C1225);
         }
         .event-card-header {
           display: flex;
-          align-items: flex-start;
-          gap: 1.1rem;
+          align-items: center;
+          gap: 1.2rem;
           margin-bottom: 1.4rem;
         }
         .event-icon-circle {
-          width: 52px;
-          height: 52px;
+          width: 58px;
+          height: 58px;
           border-radius: 50%;
           border: 1.5px solid var(--gold-metallic);
           display: flex;
@@ -145,18 +132,10 @@ export const EventCard: React.FC<Props> = ({ event }) => {
           justify-content: center;
           flex-shrink: 0;
           box-shadow: 0 4px 12px rgba(92, 18, 37, 0.08);
+          background: var(--silk-cream);
         }
-        .theme-mehendi .event-icon-circle {
-          background: var(--emerald-soft);
-          color: var(--emerald-ceremonial);
-        }
-        .theme-haldi .event-icon-circle {
-          background: var(--turmeric-soft);
-          color: var(--turmeric-ceremonial);
-        }
-        .theme-wedding .event-icon-circle {
-          background: rgba(92, 18, 37, 0.08);
-          color: var(--royal-wine);
+        .trad-event-icon {
+          display: block;
         }
         .event-sequence-kicker {
           font-family: var(--font-sans);
@@ -169,7 +148,7 @@ export const EventCard: React.FC<Props> = ({ event }) => {
         }
         .event-ceremony-title {
           font-family: var(--font-display);
-          font-size: 1.45rem;
+          font-size: 1.42rem;
           font-weight: 700;
           color: var(--royal-wine-deep);
           line-height: 1.2;
@@ -200,6 +179,10 @@ export const EventCard: React.FC<Props> = ({ event }) => {
           color: var(--gold-dark);
           flex-shrink: 0;
           margin-top: 0.2rem;
+        }
+        .font-semibold {
+          font-weight: 600;
+          color: var(--royal-wine);
         }
         .place-name {
           color: var(--royal-wine);
@@ -234,18 +217,6 @@ export const EventCard: React.FC<Props> = ({ event }) => {
         .attire-sparkle {
           color: var(--gold-metallic);
         }
-        .pending-badge-notice {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          background: rgba(184, 120, 20, 0.08);
-          border: 1px solid rgba(184, 120, 20, 0.3);
-          border-radius: var(--radius-sm);
-          padding: 0.45rem 0.7rem;
-          font-size: 0.8rem;
-          color: var(--turmeric-ceremonial);
-          font-weight: 600;
-        }
         .event-card-action {
           margin-top: auto;
         }
@@ -253,13 +224,6 @@ export const EventCard: React.FC<Props> = ({ event }) => {
           width: 100%;
           padding: 0.75rem;
           font-size: 0.92rem;
-        }
-        .action-pending-text {
-          font-size: 0.84rem;
-          color: var(--ink-muted);
-          font-style: italic;
-          display: block;
-          text-align: center;
         }
       `}</style>
     </article>

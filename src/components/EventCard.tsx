@@ -102,19 +102,6 @@ export const EventCard: React.FC<Props> = ({ event }) => {
             <p className="spec-sub-address">{event.displayAddress}</p>
           </div>
         </div>
-
-        {/* Description Box with Fixed Uniform Min-Height */}
-        <div className="event-narrative-box">
-          <p className="event-narrative-text">{event.description}</p>
-        </div>
-
-        {/* Attire Badge */}
-        {event.attireNote && (
-          <div className="attire-uniform-badge">
-            <Sparkles size={13} className="attire-icon" />
-            <span>{event.attireNote}</span>
-          </div>
-        )}
       </div>
 
       {/* Uniform Action Footer Aligned to the Bottom */}
@@ -139,11 +126,11 @@ export const EventCard: React.FC<Props> = ({ event }) => {
           background: rgba(255, 255, 255, 0.98);
           border: 1.5px solid var(--hairline-gold);
           border-radius: var(--radius-md);
-          padding: 1.8rem 1.6rem;
+          padding: clamp(1.8rem, 2.5vw, 2.2rem) clamp(1.6rem, 2.8vw, 2.2rem);
           display: flex;
           flex-direction: column;
           height: 100%;
-          min-height: 540px;
+          min-height: 330px;
           box-shadow: var(--shadow-royal);
           position: relative;
           overflow: hidden;
@@ -268,8 +255,8 @@ export const EventCard: React.FC<Props> = ({ event }) => {
           flex: 1;
           display: flex;
           flex-direction: column;
-          gap: 0.8rem;
-          margin-bottom: 1.4rem;
+          gap: 0.85rem;
+          margin-bottom: 1rem;
         }
         .spec-row-uniform {
           display: flex;
@@ -314,7 +301,7 @@ export const EventCard: React.FC<Props> = ({ event }) => {
           font-weight: 700;
         }
         .venue-row-uniform {
-          min-height: 4.2rem;
+          min-height: 3.8rem;
         }
         .spec-sub-address {
           font-size: 0.86rem;
@@ -322,46 +309,13 @@ export const EventCard: React.FC<Props> = ({ event }) => {
           line-height: 1.35;
           margin-top: 0.15rem;
         }
-        .event-narrative-box {
-          background: rgba(212, 175, 55, 0.05);
-          border-left: 2px solid var(--gold-metallic);
-          border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-          padding: 0.65rem 0.85rem;
-          margin-top: 0.2rem;
-          min-height: 4.8rem;
-          display: flex;
-          align-items: center;
-        }
-        .event-narrative-text {
-          font-size: 0.88rem;
-          color: var(--ink-secondary);
-          line-height: 1.5;
-          margin: 0;
-        }
-        .attire-uniform-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.45rem;
-          background: var(--silk-cream);
-          border: 1px dashed var(--hairline-gold);
-          padding: 0.45rem 0.8rem;
-          border-radius: var(--radius-sm);
-          font-size: 0.82rem;
-          color: var(--royal-wine-deep);
-          font-weight: 600;
-          min-height: 2.4rem;
-        }
-        .attire-icon {
-          color: var(--gold-dark);
-          flex-shrink: 0;
-        }
         .card-action-footer {
           margin-top: auto;
-          padding-top: 0.6rem;
+          padding-top: 1rem;
         }
         .uniform-map-btn {
           width: 100%;
-          padding: 0.8rem;
+          padding: 0.82rem;
           font-size: 0.92rem;
         }
         .placeholder-btn-spacer {
@@ -370,15 +324,9 @@ export const EventCard: React.FC<Props> = ({ event }) => {
         @media (max-width: 600px) {
           .uniform-event-card {
             min-height: auto;
-            padding: 1.4rem 1.2rem;
+            padding: 1.5rem 1.25rem;
           }
           .venue-row-uniform {
-            min-height: auto;
-          }
-          .event-narrative-box {
-            min-height: auto;
-          }
-          .attire-uniform-badge {
             min-height: auto;
           }
         }

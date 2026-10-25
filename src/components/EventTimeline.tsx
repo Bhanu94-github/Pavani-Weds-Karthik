@@ -82,14 +82,15 @@ export const EventTimeline: React.FC<Props> = ({ events }) => {
         }
         .events-uniform-grid {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 1.8rem;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 2rem;
           align-items: stretch;
+          width: 100%;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 820px) {
           .events-uniform-grid {
             grid-template-columns: 1fr;
-            max-width: 500px;
+            max-width: 540px;
             margin: 0 auto;
             gap: 1.5rem;
           }

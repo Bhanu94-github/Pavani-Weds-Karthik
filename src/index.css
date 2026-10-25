@@ -126,7 +126,7 @@ body {
 
 .invitation-container {
   position: relative;
-  max-width: 960px;
+  max-width: 1040px;
   margin: clamp(1rem, 3vw, 2.5rem) auto;
   min-height: 100vh;
   background: var(--silk-ivory);
@@ -175,7 +175,7 @@ body {
 .invitation-content {
   position: relative;
   z-index: 5;
-  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 6vw, 4.5rem) 4rem;
+  padding: clamp(2.5rem, 5vw, 4.2rem) clamp(1.4rem, 4vw, 3.2rem) 4rem;
 }
 
 /* ==========================================================================

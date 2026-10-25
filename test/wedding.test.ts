@@ -32,11 +32,11 @@ const storageMap = new Map<string, string>();
 };
 
 // 1. Configuration tests
-it('weddingConfig contains correct bride and groom details and Gaddaguti parents', () => {
+it('weddingConfig contains correct bride and groom details and Gaddagooti parents', () => {
   assert.strictEqual(weddingConfig.couple.bride.fullName, 'Pavani Kalyani');
   assert.strictEqual(weddingConfig.couple.groom.fullName, 'Karthik Reddy');
-  assert.ok(weddingConfig.couple.bride.parents?.includes('Gaddaguti Pushpa'));
-  assert.ok(weddingConfig.couple.bride.parents?.includes('Gaddaguti Veeraswamy'));
+  assert.ok(weddingConfig.couple.bride.parents?.includes('Gaddagooti Pushpa'));
+  assert.ok(weddingConfig.couple.bride.parents?.includes('Gaddagooti Veeraswamy'));
   assert.strictEqual(weddingConfig.mainWedding.date, '2026-11-20');
   assert.strictEqual(weddingConfig.mainWedding.venueName, 'Sravya Gardens');
 });

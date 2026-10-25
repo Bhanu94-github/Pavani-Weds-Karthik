@@ -58,10 +58,10 @@ export const InvitationHero: React.FC<Props> = ({ config }) => {
           <span className="cartouche-lotus-ornament" aria-hidden="true">🪷</span>
           <div className="parents-cartouche-content">
             <p className="parents-lineage-text">
-              D/o <strong>Smt. Gaddaguti Pushpa</strong> &amp; <strong>Sri Gaddaguti Veeraswamy</strong>
+              D/o <strong>Smt. Gaddagooti Pushpa</strong> &amp; <strong>Sri Gaddagooti Veeraswamy</strong>
             </p>
             <p className="parents-lineage-telugu">
-              శ్రీమతి గడ్డగూటి పుష్ప &amp; శ్రీ గడ్డగూటి వీరస్వామి దంపతుల సుపుత్రిక
+              శ్రీమతి గద్దగూటి పుష్ప &amp; శ్రీ గద్దగూటి వీరస్వామి దంపతుల సుపుత్రిక
             </p>
           </div>
           <span className="cartouche-lotus-ornament" aria-hidden="true">🪷</span>

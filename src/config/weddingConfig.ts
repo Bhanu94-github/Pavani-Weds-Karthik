@@ -2,7 +2,7 @@ import { WeddingConfig } from '../types/wedding';
 
 /**
  * Single Source of Truth for Pavani Kalyani & Karthik Reddy's Wedding Invitation
- * (Bride's Family Perspective - Gaddaguti Family)
+ * (Bride's Family Perspective - Gaddagooti Family)
  */
 export const weddingConfig: WeddingConfig = {
   couple: {
@@ -10,7 +10,7 @@ export const weddingConfig: WeddingConfig = {
       fullName: 'Pavani Kalyani',
       displayName: 'Pavani',
       role: 'Bride',
-      parents: 'D/o Smt. Gaddaguti Pushpa & Sri Gaddaguti Veeraswamy'
+      parents: 'D/o Smt. Gaddagooti Pushpa & Sri Gaddagooti Veeraswamy'
     },
     groom: {
       fullName: 'Karthik Reddy',
@@ -152,6 +152,6 @@ export const weddingConfig: WeddingConfig = {
     message:
       'We look forward to welcoming you with warmth, affection, and folded hands. Your gracious presence and prayers will forever illuminate this sacred union.',
     signOff: 'With Love, The Families',
-    gratitudeNote: 'Gaddaguti & Gade Families • Nizamabad, Telangana'
+    gratitudeNote: 'Gaddagooti & Gade Families • Nizamabad, Telangana'
   }
 };

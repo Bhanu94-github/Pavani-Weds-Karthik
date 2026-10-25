@@ -36,10 +36,10 @@ export const ClosingSection: React.FC<Props> = ({ config, onReopenEnvelope }) =>
             <span>{couple.groom.displayName}</span>
           </p>
           <p className="signature-families-label">
-            Smt. Gaddaguti Pushpa &amp; Sri Gaddaguti Veeraswamy
+            Smt. Gaddagooti Pushpa &amp; Sri Gaddagooti Veeraswamy
           </p>
           <span className="signature-sub-label">
-            &amp; The Gaddaguti &amp; Palivela Families
+            &amp; The Gaddagooti Family
           </span>
         </div>
 
@@ -69,7 +69,7 @@ export const ClosingSection: React.FC<Props> = ({ config, onReopenEnvelope }) =>
 
         <div className="royal-copyright-tag">
           <p>
-            With divine blessings and affection <Heart size={13} className="heart-inline-icon" /> Palivela &amp; Gaddaguti Family
+            With divine blessings and affection <Heart size={13} className="heart-inline-icon" /> Gaddagooti Family
           </p>
           <small className="wedding-date-stamp">20 November 2026 • Sravya Gardens, Nizamabad</small>
         </div>

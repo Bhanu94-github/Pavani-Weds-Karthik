@@ -114,10 +114,10 @@ export const CeremonialEnvelopeModal: React.FC<Props> = ({ config, isOpen, onOpe
 
           <div className="unboxing-parents-box">
             <p className="unboxing-parents-lineage">
-              D/o Smt. Gaddaguti Pushpa &amp; Sri Gaddaguti Veeraswamy
+              D/o Smt. Gaddagooti Pushpa &amp; Sri Gaddagooti Veeraswamy
             </p>
             <small className="unboxing-parents-telugu">
-              గడ్డగూటి వారి వివాహ ఆహ్వాన పత్రిక
+              గద్దగూటి వారి వివాహ ఆహ్వాన పత్రిక
             </small>
           </div>
 
